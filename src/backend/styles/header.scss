@@ -1,0 +1,111 @@
+@import "utils.scss";
+
+.header {
+  background-color: $background-secondary;
+
+  > .header-container {
+    width: 80%;
+    height: 56px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > .logo {
+      font-size: 1.5rem;
+      color: $color;
+      padding: 0 10px;
+      font-family: $text1;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    > .search-container {
+      width: 40%;
+      background-color: $background-primary;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 5px;
+
+      > .input {
+        width: 85%;
+        height: 36px;
+        border: none;
+        padding-left: 15px;
+        font-size: 14px;
+        color: $color2;
+        border-radius: 5px 0 0 5px;
+        letter-spacing: 0.5px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      > .search {
+        font-size: 20px;
+        margin-top: 2px;
+        margin-right: 25px;
+      }
+    }
+
+    > .header-options {
+      width: 30%;
+      height: 36px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      >.btn{
+        padding: 0.5rem 2rem;
+        height: 32px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        color: #1450b2;
+        font-family: $text1;
+      }
+
+      >.wishlist{
+        height: 32px;
+        font-size: 25px;
+        color:$color;
+        padding: 0 0.5rem;
+        margin-top: 5px;
+        display: flex;
+        position: relative;
+
+        >.wishlistItem{
+            font-size: 14px;
+            position: absolute;
+            top: -5px;
+            right: 2px;
+            color: #1450b2;
+            font-weight: 500;
+        }
+      }
+      >.cart{
+        height: 32px;
+        font-size: 25px;
+        color:$color;
+        padding: 0 0.5rem;
+        margin-top: 5px;
+        display: flex;
+        position: relative;
+
+        >.cartItem{
+            font-size: 14px;
+            position: absolute;
+            top: -5px;
+            right: 2px;
+            color: #1450b2;
+            font-weight: 500;
+        }
+      }
+    }
+  }
+}
