@@ -22,7 +22,7 @@ export const DataProvider = ({children})=>{
             const {data: category} = await axios.get("/api/categories");
             dispatch({
                 type:"Add_Category",
-                payload:category.categories,
+                payload:category.categories
             })
         }
         catch(err){
