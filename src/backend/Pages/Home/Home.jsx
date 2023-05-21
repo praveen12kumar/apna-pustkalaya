@@ -28,9 +28,8 @@ export const Home = () => {
   // console.log(category);
   // .categories
 
-  const {category} = useContext(DataContext);
-  console.log(category);
-
+  const {state} = useContext(DataContext);
+  console.log(state.category.payload);
   return (
     <>
       <div className="home">
@@ -61,8 +60,8 @@ export const Home = () => {
               categories, Choose your favourite one now.
             </p>
             <div className="category">
-            {category &&
-                category.map(({ id, categoryName, description }) => {
+            {state.category.payload &&
+                state.category.payload.map(({ id, categoryName, description }) => {
                   return (
                     <div className="category-box" key={id}>
                       <div className="detail-box">

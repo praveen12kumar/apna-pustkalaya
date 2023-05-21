@@ -1,11 +1,11 @@
-export const dataReducer = (state, action)=>{
+export const dataReducer = (state, {type, payload})=>{
     
-    console.log(action.payload);
-    switch(action.type){
-        case "Add_data":
-            return{
-                ...state, category:action.payload,
-            };
+     //console.log("cate",state.category);
+    switch(type){
+        case "Add_Category":
+            return  {...state, category:{...state.category,  payload}};
+                
+            
         default:
             return state;
     }

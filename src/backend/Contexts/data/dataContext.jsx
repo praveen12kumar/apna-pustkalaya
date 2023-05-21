@@ -28,8 +28,6 @@ export const DataProvider = ({children})=>{
         catch(err){
             console.log(err);
         }
-
-
       }
       useEffect(()=>{
         getData();
@@ -38,7 +36,7 @@ export const DataProvider = ({children})=>{
       return(
         <DataContext.Provider
         value={{
-            category: state.category,
+            state,
         }}
         >
             {children}

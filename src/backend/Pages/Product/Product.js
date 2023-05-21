@@ -18,7 +18,7 @@ const [productData, setProdcuctData] = useState([]);
     getData();
   }, []);
 
-  console.log(productData);
+
   return (
     <div className="product-container">
        <ProductFilter/> 
