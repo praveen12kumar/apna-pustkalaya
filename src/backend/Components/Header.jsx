@@ -1,11 +1,17 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 export const Header = () => {
   return (
     <div className="header">
       <div className="header-container">
-        <span className="logo">MyKart</span>
-
+      <Link to="/">
+        <div className="header-logo">
+          {/* <span className="logo">ApnaPustakalay</span> */}
+          <div className="logo"></div>
+        </div>
+        </Link>
+        
         <div className="search-container">
           <input
             className="input"

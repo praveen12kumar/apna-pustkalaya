@@ -1,24 +1,37 @@
 @import "utils.scss";
 
 .header {
-  background-color: $background-secondary;
+    background-color: $background-secondary;
 
-  > .header-container {
+  >.header-container {
     width: 80%;
-    height: 56px;
+    height: 70px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    > .logo {
-      font-size: 1.5rem;
-      color: $color;
-      padding: 0 10px;
-      font-family: $text1;
-      font-weight: 700;
-      letter-spacing: 3px;
-    }
+      .header-logo {
+        position: relative;
+        // >.logo{
+        //   text-decoration: none;
+        //   font-weight: 600;
+        //   text-transform: uppercase;
+        //   font-size: 20px;
+        //   color: #fff;
+        //   letter-spacing: 1.5px;
+        //   font-family: $text2;
+        // }
+        >.logo{
+          background-image: url("../../assets/logo.png");
+          width: 8rem;
+          height: 3rem;
+          background-size: cover;
+          background-repeat: no-repeat;
+          border-radius: 25px;
+        }
+      }
+    
 
     > .search-container {
       width: 40%;
@@ -58,12 +71,10 @@
       justify-content: space-between;
 
       >.btn{
-        padding: 0.5rem 2rem;
-        height: 32px;
+        padding:0.5rem 2rem;
         border: none;
         border-radius: 5px;
         font-size: 16px;
-        line-height: 20px;
         font-weight: 600;
         letter-spacing: 0.1rem;
         color: #1450b2;
@@ -84,7 +95,7 @@
             position: absolute;
             top: -5px;
             right: 2px;
-            color: #1450b2;
+            color: #fff;
             font-weight: 500;
         }
       }
@@ -102,7 +113,7 @@
             position: absolute;
             top: -5px;
             right: 2px;
-            color: #1450b2;
+            color: #fff;
             font-weight: 500;
         }
       }

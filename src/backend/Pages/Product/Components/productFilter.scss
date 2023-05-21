@@ -1,0 +1,99 @@
+@import"../../../styles/utils.scss";
+
+.filter-container{
+    width: 15%;
+    background-color: $color;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1rem 0px 2rem;
+
+    >.filter >h3{
+        color: #212121;
+        padding: 1rem 0rem;
+        letter-spacing: 1px;
+    }
+
+    >.filter-range{
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem 0;
+        >label{
+            padding: 0.5rem 0;
+        }
+    }
+
+
+    >.filter-category{
+        display: flex;
+        flex-direction: column;
+        >h4{
+            padding: 0.3rem 0;
+        }
+        >div{
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: center;
+            >input{
+                margin-right: 5px;
+            }
+            >label{
+                padding-bottom: 2px;
+                font-weight: 450;
+            }
+        }
+    }
+
+    >.filter-rating{
+        display: flex;
+        flex-direction: column; 
+        >h4{
+            padding: 0.3rem 0;
+        }
+        >div{
+            padding: 0.2rem 0;
+            >input{
+                margin-right: 5px;
+            }
+            >label{
+                padding-bottom: 4px;
+                font-weight: 450;
+            }
+
+        }
+    }
+
+    >.filter-sort{
+        display: flex;
+        flex-direction: column; 
+        >h4{
+            padding: 0.3rem 0;
+        }
+        >div{
+            padding: 0.2rem 0;
+            >input{
+                margin-right: 5px;
+            }
+            >label{
+                padding-bottom: 4px;
+                font-weight: 450;
+            }
+
+        }
+    }
+
+    >.filter-clear{
+        padding: 1rem 0;
+        .btn{
+            width: 150px;
+            height: 30px;
+            background-color: $background-secondary;
+            color: $color;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            letter-spacing: 2px;
+        }
+    }
+
+}

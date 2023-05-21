@@ -1,0 +1,193 @@
+@import"../../styles/utils.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.home {
+  flex-grow: 1;
+  padding: 4rem 4rem;
+  
+
+  > .bg-img-container {
+    position: relative;
+    > .image {
+      background-image: url("../../../assets/home-book.webp");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      height: 33rem;
+    }
+
+    >.home-text-container{
+        padding: 1rem;
+        position: absolute;
+        top: 30px;
+        left: 800px;
+        z-index: 1;
+        display: flex;
+        
+
+        >.main-text{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            >h3{
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-size: 24px;
+                color: $background-secondary;
+                word-spacing: 1px;
+            }
+            >h1{
+              text-transform: uppercase;
+              color: rgb(28, 28, 98);
+              font-size: 42px;
+              letter-spacing: 5px;
+              word-spacing: 2px;
+              font-family: Roboto;
+              margin: 1rem 0;
+            }
+
+            >.home-slogan{
+              width: 30rem;
+              letter-spacing: 1px;
+              font-size: 16px;
+              line-height: 25px;
+              font-weight: 400;
+              font-family: Roboto;
+            }
+
+            .home-btn{
+              background-color: $btn-primary;
+              border: none;
+              padding: 0.7rem 1.5rem;
+              color: $color;
+              font-size: 16px;
+              text-transform: uppercase;
+              position: absolute;
+              bottom: -100px;
+              right: 100px;
+              &:hover{
+                opacity: 0.8;
+              }
+            }
+        }
+    }
+  }
+
+  >.book-categories{
+    margin: 2rem;
+    
+    >.category-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      >h2{
+        font-size: 24px;
+        letter-spacing: 2px;
+        font-weight: 400;
+        font-family: Poppins;
+      }
+      >p{
+        font-size: 14px;
+        font-family: Poppins;
+        letter-spacing: 1px;
+        word-spacing: 1px;
+        margin: 1rem 0;
+      }
+
+      >.category{
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        >.category-box{
+          width: 210px;
+          height: 210px;
+          margin-left: 2rem;
+          border-radius: 100px;
+          padding: 2rem 1rem 0 1rem;
+          cursor: pointer;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 10px 0px;
+          background-color: rgb(33, 101, 130);
+          transition:all 0.2s linear;
+          &:hover{
+            transform: scale(1.03);
+          }
+          >.detail-box{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              color: $color;
+              font-family: Roboto;
+
+              >h4{
+                font-size: 20px;
+                margin-bottom: 1rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+              }
+
+              >p{
+                letter-spacing: 1px;
+                font-size: 14px;
+              }
+          }
+        }
+      }
+
+
+    }
+  }
+}
+
+.footer{
+  width: 100%;
+  height: 200px;
+  background-color: rgb(41, 92, 137);
+  >.footer-section{
+    width: 60%;
+    margin: 0px auto;
+    padding-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    >.footer-left-section{
+      display: flex;
+      flex-direction: column;
+      color: $color;
+      >h2{
+        text-transform: uppercase;
+        padding: 1rem 0;
+        letter-spacing: 2px;
+      }
+      >p{
+        font-size: $font-sm;
+        padding-bottom: 0.2rem;
+      }
+    }
+    >.contact-section{
+      display: flex;
+      flex-direction: column;
+      color: $color;
+      >h3{
+        padding: 1rem 0;
+        letter-spacing: 2px;
+        text-align: center;
+      }
+      >.contact{
+        display: flex;
+        justify-content: space-around;
+        >a{
+          text-decoration: none;
+          color: $color;
+          font-size: 18px;
+          padding: 0px 0.5rem;
+        }
+      }
+    }
+  }
+}
