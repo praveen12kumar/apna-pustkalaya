@@ -15,6 +15,7 @@ export const DataProvider = ({children})=>{
         wishlist: [],
         address: [],
         search: "",
+        filterCategory: "",
       };
       const [state, dispatch] = useReducer(dataReducer, initialState);
       
@@ -33,11 +34,6 @@ export const DataProvider = ({children})=>{
                 payload:product.products
             })
 
-
-
-
-
-    
         }
         catch(err){
             console.log(err);
@@ -63,8 +59,7 @@ export const DataProvider = ({children})=>{
             wishlist: state.wishlist,
             search: state.search,
             address: state.address,
-            
-          
+            filterCategory: state.filterCategory,
         }}
         >
             {children}

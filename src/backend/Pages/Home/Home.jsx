@@ -6,30 +6,27 @@ import {
   AiFillGithub,
   AiFillLinkedin,
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { DataContext} from "../../Contexts/data/dataContext";
+
 export const Home = () => {
-  // const [category, setCategory] = useState([]);
+  const navigate = useNavigate();
+  const {dataDispatch} = useContext(DataContext);
+  const {category, filterCategory} = useContext(DataContext);
+  //console.log(category);
 
-  // const getData = async () => {
-  //   try {
-  //     fetch("/api/categories")
-  //     .then(response => response.json())
-  //     .then(data=> setCategory(data.categories));
-  //   }
-  //   catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const handleCategory = (categoryName) =>{
+    console.log(categoryName);
+    console.log(filterCategory);
+    dataDispatch({
+      type:"Filter-Categories",
+      payload: categoryName
+    })
+    console.log(filterCategory);
+    navigate("/products")
+  }
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-  // console.log(category);
-  // .categories
-
-  const {category} = useContext(DataContext);
-  //console.log(category[0]);
 
   return (
     <>
@@ -60,11 +57,11 @@ export const Home = () => {
               There are more than 1 million books available with many different
               categories, Choose your favourite one now.
             </p>
-            <div className="category">
-            {category[0]&&
-                category[0].map(({ id, categoryName, description }) => {
+            <div className="category" >
+            {category&&
+                category.map(({ id, categoryName, description }) => {
                   return (
-                    <div className="category-box" key={id}>
+                    <div className="category-box" key={id} onClick={()=>handleCategory(categoryName)} >
                       <div className="detail-box">
                         <h4>{categoryName}</h4>
                         <p>{description}</p>

@@ -8,7 +8,10 @@ import { DataContext } from "../../Contexts/data/dataContext";
 export const Product = () => {
   
   const {products} = useContext(DataContext);
-  const productData = products[0];
+  //console.log(products);
+  const productData = products;
+  const {filterCategory} = useContext(DataContext);
+  
   
  
   // const getData = async () => {
@@ -42,9 +45,10 @@ export const Product = () => {
             )
           )}
         </div>
-
+            
         <div className="product-section">
-          {productData.map((prod) => (
+          {console.log(filterCategory)}
+          {productData.filter((prod)=> prod.categoryName === filterCategory).map((prod) => (
             <ProductCard prod = {prod}/>
           ))}
         </div>

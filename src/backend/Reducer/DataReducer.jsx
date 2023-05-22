@@ -1,17 +1,25 @@
 export const dataReducer = (state, {type, payload})=>{
     
      //console.log("cate",state.category);
+     
     switch(type){
         case "Add_Category":
             //return  {...state, category:{...state.category,  payload}};
-            return  {...state, category:[...state.category,  payload]};
+            return  {
+                ...state, category:[...state.category,  ...payload]
+            };
             
         case "Add_Product":
             return{
-                ...state, products:[...state.products, payload]
+                ...state, products:[...state.products, ...payload]
             };
+        case "Filter-Categories":
+            return{
+                ...state, filterCategory: `${payload}`
+            }
             
         default:
             return state;
     }
+    
 }
