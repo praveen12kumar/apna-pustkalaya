@@ -10,6 +10,7 @@ export const DataProvider = ({children})=>{
         category: [],
         sortByRating: "",
         products: [],
+        allProducts: [],
         cart: [],
         wishlist: [],
         address: [],
@@ -24,11 +25,26 @@ export const DataProvider = ({children})=>{
                 type:"Add_Category",
                 payload:category.categories
             })
+
+            const {data: product} = await axios.get("/api/products");
+            //console.log(product);
+            dispatch({
+                type:"Add_Product",
+                payload:product.products
+            })
+
+
+
+
+
+    
         }
         catch(err){
             console.log(err);
         }
       }
+
+      
       useEffect(()=>{
         getData();
       },[]);
@@ -36,7 +52,19 @@ export const DataProvider = ({children})=>{
       return(
         <DataContext.Provider
         value={{
-            state,
+            sortBy: state.sortBy,
+            sortByRating: state.sortByRating,
+            priceRange: state.priceRange,
+            category: state.category,
+            products: state.products,
+            allProducts: state.allProducts,
+            dataDispatch: dispatch,
+            cart: state.cart,
+            wishlist: state.wishlist,
+            search: state.search,
+            address: state.address,
+            
+          
         }}
         >
             {children}

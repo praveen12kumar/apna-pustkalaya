@@ -4,7 +4,7 @@ import Mockman from "mockman-js"
 import {Header} from "../src/backend/Components/Header";
 import {Home} from "../src/backend/Pages/Home/Home"
 import { Product } from './backend/Pages/Product/Product';
-
+import {ProductPage} from "./backend/Pages/Product/ProductPage";
 
 // CSS
 import "./backend/styles/app.scss";
@@ -15,7 +15,7 @@ import "./backend/Pages/Product/product.scss";
 import "./backend/Pages/Product/product.scss";
 import "./backend/Pages/Product/Components/productFilter.scss";
 import "./backend/Pages/Product/Components/productCard.scss";
-
+import "./backend/Pages/Product/productPage.scss";
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<Home />} />;
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/products" element={<Product />} />
-
+        <Route path="/products/:productId" element={<ProductPage />} />
       </Routes>
 
     </div>

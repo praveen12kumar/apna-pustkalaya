@@ -1,22 +1,28 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import {useContext } from "react";
 import { ProductFilter } from "./Components/ProductFilter";
 import { ProductCard } from "./Components/ProductCard";
-export const Product = () => {
-const [productData, setProdcuctData] = useState([]);
+import { DataContext } from "../../Contexts/data/dataContext";
 
-  const getData = async () => {
-    try {
-      fetch("/api/products")
-        .then((response) => response.json())
-        .then((data) => setProdcuctData(data.products));
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  useEffect(() => {
-    getData();
-  }, []);
+
+export const Product = () => {
+  
+  const {products} = useContext(DataContext);
+  const productData = products[0];
+  
+ 
+  // const getData = async () => {
+  //   try {
+  //     fetch("/api/products")
+  //       .then((response) => response.json())
+  //       .then((data) => setProdcuctData(data.products));
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
 
   return (
@@ -38,11 +44,12 @@ const [productData, setProdcuctData] = useState([]);
         </div>
 
         <div className="product-section">
-          {productData.map((prod, index) => (
-            <ProductCard prod = {prod} index= {index}/>
+          {productData.map((prod) => (
+            <ProductCard prod = {prod}/>
           ))}
         </div>
       </div>
     </div>
+   
   );
 };

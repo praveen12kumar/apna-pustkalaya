@@ -92,12 +92,12 @@ export const ProductPage = () => {
           </div>
         </div>
         <div className="buttons">
-            <div className="btn">
-                <button><AiOutlineShoppingCart/> <span>Add to Cart</span> </button>
-            </div>
-            <div className="btn">
-                <button><AiOutlineHeart/> <span>Add to Wishlist</span> </button>
-            </div>
+            
+                <button className="btn"><AiOutlineShoppingCart/> <span>Add to Cart</span> </button>
+           
+            
+                <button className="btn"><AiOutlineHeart/> <span>Add to Wishlist</span> </button>
+           
         </div>
       </div>
     </div>

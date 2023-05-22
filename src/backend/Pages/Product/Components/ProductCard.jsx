@@ -1,14 +1,22 @@
 import React from 'react'
+import {  useNavigate } from 'react-router-dom';
 import {AiOutlineHeart, AiFillStar} from "react-icons/ai";
 import {FaShoppingCart} from "react-icons/fa";
-export const ProductCard = ({prod, index}) => {
+
+
+export const ProductCard = ({prod}) => {
+
+  const navigate = useNavigate();
     const {_id, title, author, image, price, newPrice, discount,
         rating,Language,  } = prod;
   return (
     <div className='product-card' key={_id}>
-      <div className="card-image"> 
-          <img className='image' src={image} alt={"random"} />
+      {/* <Link to={`/products/${_id}`}> */}
+       <div className="card-image" onClick={()=> navigate(`/products/${_id}`)} > 
+          <img className='image' src={image} alt={"random"}  />
+          
       </div>
+      {/* </Link> */}
       <div className="heart">
             <AiOutlineHeart/>
       </div>
@@ -41,7 +49,7 @@ export const ProductCard = ({prod, index}) => {
       </div>
       <div className="button">
         <button className='btn'>
-          <FaShoppingCart/>Add to cart
+          <FaShoppingCart/><span>Add to cart</span>
         </button>
       </div>
     </div>
