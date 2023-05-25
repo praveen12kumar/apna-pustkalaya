@@ -1,7 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { useContext } from "react";
 import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import { DataContext } from "../Contexts/data/dataContext";
 export const Header = () => {
+  let {category,sortBy, priceRange, rating,products } = useContext(DataContext);
+
   return (
     <div className="header">
       <div className="header-container">
@@ -24,7 +28,7 @@ export const Header = () => {
         </div>
 
         <div className="header-options">
-          <button className="btn">Login</button>
+          <button className="btn" onClick={()=> console.log("cate", category, "price", priceRange,"rating", rating , products)}   >Login </button>
           <div className="wishlist">
             <AiOutlineHeart/>
             <span className="wishlistItem">0</span>

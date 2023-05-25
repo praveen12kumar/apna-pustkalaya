@@ -14,7 +14,7 @@
         letter-spacing: 1px;
     }
 
-    >.filter-range{
+    >.price-range{
         display: flex;
         flex-direction: column;
         padding: 0.5rem 0;
@@ -30,16 +30,19 @@
         >h4{
             padding: 0.3rem 0;
         }
-        >div{
+        >.category{
             padding: 0.2rem 0;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            >li{
+                list-style: none;
             >input{
                 margin-right: 5px;
             }
             >label{
                 padding-bottom: 2px;
                 font-weight: 450;
+                }
             }
         }
     }
@@ -50,16 +53,20 @@
         >h4{
             padding: 0.3rem 0;
         }
-        >div{
+          >.rating{
             padding: 0.2rem 0;
+            display: flex;
+            flex-direction: column;
+            >li{
+                list-style: none;
             >input{
                 margin-right: 5px;
             }
             >label{
-                padding-bottom: 4px;
+                padding-bottom: 2px;
                 font-weight: 450;
+                }
             }
-
         }
     }
 

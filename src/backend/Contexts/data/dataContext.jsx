@@ -6,16 +6,16 @@ export const DataContext = createContext();
 export const DataProvider = ({children})=>{
     const initialState = {
         sortBy: "",
-        priceRange: "",
+        priceRange: 0,
         category: [],
-        sortByRating: "",
+        rating: 0,
         products: [],
         allProducts: [],
         cart: [],
         wishlist: [],
         address: [],
         search: "",
-        filterCategory: "",
+        filterCategory: "All",
       };
       const [state, dispatch] = useReducer(dataReducer, initialState);
       
@@ -33,7 +33,6 @@ export const DataProvider = ({children})=>{
                 type:"Add_Product",
                 payload:product.products
             })
-
         }
         catch(err){
             console.log(err);
@@ -49,7 +48,7 @@ export const DataProvider = ({children})=>{
         <DataContext.Provider
         value={{
             sortBy: state.sortBy,
-            sortByRating: state.sortByRating,
+            rating: state.rating,
             priceRange: state.priceRange,
             category: state.category,
             products: state.products,
