@@ -12,10 +12,25 @@ export const dataReducer = (state, {type, payload})=>{
             return{
                 ...state, products:[...state.products, ...payload]
             };
+        case "Add_to_cart":
+            return {...state, cart:[...state.cart, payload]};
+        
+        case "show_btn":
+            // console.log(payload);
+            return {...state, filterCategory:[...state.filterCategory, payload]}
+
         case "Filter-Categories":
             return{
-                ...state, filterCategory: `${payload}`
+                ...state, filterCategory: [...state.filterCategory, `${payload}`]
             }
+        
+        case "add_filter_category":
+            return {...state, filterCategory:[...state.filterCategory, payload]}
+
+        // case "delete_filter_category":
+        //     return{...state, filterCategory: [...state.filterCategory.filter((cate)=> cate !== payload)
+        //     }
+
         case "filterPrice":
             return{
                 ...state,  priceRange: payload

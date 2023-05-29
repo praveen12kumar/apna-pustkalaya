@@ -1,11 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { useContext } from "react";
+import { useContext,  } from "react";
 import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { DataContext } from "../Contexts/data/dataContext";
+import { useNavigate } from "react-router-dom";
 export const Header = () => {
   let {category,sortBy, priceRange, rating,products } = useContext(DataContext);
-
+  const navigate = useNavigate();
   return (
     <div className="header">
       <div className="header-container">
@@ -33,7 +34,8 @@ export const Header = () => {
             <AiOutlineHeart/>
             <span className="wishlistItem">0</span>
           </div>
-          <div className="cart">
+
+          <div className="cart" onClick={()=> navigate('/cart')}>
             <AiOutlineShoppingCart/>
             <span className="cartItem">0</span>
           </div>

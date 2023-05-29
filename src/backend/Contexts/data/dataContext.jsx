@@ -15,7 +15,7 @@ export const DataProvider = ({children})=>{
         wishlist: [],
         address: [],
         search: "",
-        filterCategory: "All",
+        filterCategory: ['All'],
       };
       const [state, dispatch] = useReducer(dataReducer, initialState);
       

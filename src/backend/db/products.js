@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Ignited Minds",
     author: "A. P. J. Abdul Kalam",
     image:"https://i.ibb.co/G9qbtLk/ignited-minds.png",
@@ -22,7 +22,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Rich Dad Poor Dad ",
     author: "Robert T. Kiyosaki",
     image:"https://i.ibb.co/VNV5QY1/rich-dad-poor-dad.png",
@@ -37,7 +37,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Attitude is Everything:",
     author:"Keller Jeff",
     image:"https://i.ibb.co/JngdDcc/attitude-is-everything.png",
@@ -52,7 +52,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Think Like a Monk",
     author:"Jay Shetty",
     image:"https://i.ibb.co/7QJ8Tj0/think-like-a-monl.png",
@@ -67,7 +67,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"You Can",
     author:"Adams George Matthew",
     image:"https://i.ibb.co/JngdDcc/attitude-is-everything.png",
@@ -82,7 +82,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Zero to One",
     author:"Peter Thiel",
     image:"https://i.ibb.co/YcYcm03/zero-to-one.png",
@@ -97,7 +97,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Silent Spring",
     author:"Carson Rachel",
     image:"https://i.ibb.co/9hfFx3Q/silent-spring.png",
@@ -112,7 +112,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"The Richest Man in Babylon ",
     author:"Clason George S.",
     image:"https://i.ibb.co/LZRpj1h/richest-man-in-the-babylon.png",
@@ -127,7 +127,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Sapiens",
     author:"Harari Yuval Noah",
     image:"https://i.ibb.co/LJLqKnq/sapians.png",
@@ -142,7 +142,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Steve Jobs ",
     author:"Steve Jobs ",
     image:"https://i.ibb.co/0DkS3JG/steve-jobs.png",
@@ -157,7 +157,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Quiet",
     author:"Cain Susan",
     image:"https://i.ibb.co/FgKR2YQ/Quiet.png",
@@ -172,7 +172,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Gaban",
     author:"Premchand",
     image:"https://i.ibb.co/hVm6y7X/premchandra.png",
@@ -187,7 +187,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"ALL THE LIGHT WE CANNOT SEE",
     author:"Anthony Doerr",
     image:"https://i.ibb.co/YLtwS9R/light-we-can-not-see.png",
@@ -202,7 +202,7 @@ export const products = [
     fastDelivery:false, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Believe in Yourself",
     author:"Joseph Murphy",
     image:"https://i.ibb.co/nkSyxWK/believe-in-yourself.png",
@@ -217,7 +217,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"The Blue Umbrella",
     author:"Bond Ruskin",
     image:"https://i.ibb.co/jR1pHj7/blue-ambrella.png",
@@ -232,7 +232,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"A Brief History Of Time",
     author:"Stephen Hawking",
     image:"https://i.ibb.co/LS7bzLD/a-brief-history-time.png",
@@ -247,7 +247,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Harry Potter and the Philosopher's Stone",
     author:"Rowling J. K.",
     image:"https://i.ibb.co/rs8tSkP/harry-potter.png",
@@ -262,7 +262,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    _id: uuid(),
+    id: uuid(),
     title:"Ikigai",
     author:"HECTER GARCIA",
     image:"https://i.ibb.co/2cpW5r0/ekigai.png",

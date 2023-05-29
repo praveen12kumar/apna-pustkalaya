@@ -5,7 +5,7 @@ import {Header} from "../src/backend/Components/Header";
 import {Home} from "../src/backend/Pages/Home/Home"
 import { Product } from './backend/Pages/Product/Product';
 import {ProductPage} from "./backend/Pages/Product/ProductPage";
-
+import {Cart} from "./backend/Pages/Cart/Cart";
 // CSS
 import "./backend/styles/app.scss";
 import "./backend/styles/utils.scss";
@@ -29,6 +29,7 @@ function App() {
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/products" element={<Product />} />
         <Route path="/products/:productId" element={<ProductPage />} />
+        <Route path="/cart" element={<Cart/>} />
       </Routes>
 
     </div>

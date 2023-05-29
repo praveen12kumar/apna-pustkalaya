@@ -2,11 +2,33 @@ import React from "react";
 import {useContext} from "react";
 import { DataContext } from "../../../Contexts/data/dataContext";
 export const ProductFilter = () => {
-  let {dataDispatch, category,sortBy, priceRange, rating,products } = useContext(DataContext);
   const ratingArray = [1, 2, 3, 4];
+  let {dataDispatch, category,filterCategory,sortBy, priceRange, rating,products } = useContext(DataContext);
+  
 
+  const categoryHandler = (category) =>{
+    
+    for( let cate in filterCategory){
+      if(filterCategory[cate] === category){
+        dataDispatch({
+          type:"delete_filter_category",
+          payload: category,
+        })
+      }
+      else{
+        dataDispatch({
+          type:"add_filter_category",
+          payload: category,
+        })
+      }
+    }
+  }
+
+  
   return (
+    
     <div className="filter-container">
+      {console.log(filterCategory)}
       <div className="filter">
         <h3>Filter</h3>
       </div>
@@ -25,10 +47,10 @@ export const ProductFilter = () => {
         <div className="category" >
           {
             category.map(({categoryName})=>(
-              <li>
+              <li key={categoryName}>
                 <label>
                 {/* <input type="checkbox" id="checkbox1" name="checkbox" value={categoryName} /> */}
-                <input type="checkbox" id="checkbox1" name="checkbox" value={categoryName} />
+                <input type="checkbox" id="checkbox1" name="checkbox" value={categoryName} onChange={()=> categoryHandler(categoryName)} />
                 {categoryName}</label>
               </li>
             ))
@@ -42,7 +64,7 @@ export const ProductFilter = () => {
         {
           ratingArray.map((rate)=>{
             return(
-              <li >
+              <li key={rate}>
                 <label key={rate}>
                 <input type="radio" name="rating1" value={rate}   onChange={(e)=> dataDispatch({
                   type:"filterRating",

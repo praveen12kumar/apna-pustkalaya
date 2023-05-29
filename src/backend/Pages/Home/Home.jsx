@@ -13,19 +13,27 @@ import { DataContext} from "../../Contexts/data/dataContext";
 export const Home = () => {
   const navigate = useNavigate();
   const {dataDispatch} = useContext(DataContext);
-  const {category, filterCategory} = useContext(DataContext);
-  //console.log(category);
+  let {products, category, filterCategory} = useContext(DataContext);
 
   const handleCategory = (categoryName) =>{
-    console.log(categoryName);
-    console.log(filterCategory);
+   
     dataDispatch({
       type:"Filter-Categories",
       payload: categoryName
     })
-    console.log(filterCategory);
     navigate("/products")
   }
+
+  const handleShowBtn = () =>{
+    dataDispatch({
+      type:"show_btn",
+      payload: "All"
+    })
+
+    navigate('/products');
+  }
+
+  
 
 
   return (
@@ -43,7 +51,7 @@ export const Home = () => {
                 quisquam. Odit quasi culpa labore? Totam
               </span>
               <Link to="/products">
-                <button className="home-btn">Shop now</button>
+                <button className="home-btn" onClick={handleShowBtn} >Shop now</button>
               </Link>
             </div>
           </div>
@@ -60,6 +68,7 @@ export const Home = () => {
             <div className="category" >
             {category&&
                 category.map(({ id, categoryName, description }) => {
+                  
                   return (
                     <div className="category-box" key={id} onClick={()=>handleCategory(categoryName)} >
                       <div className="detail-box">

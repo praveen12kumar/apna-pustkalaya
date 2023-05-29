@@ -1,18 +1,31 @@
-import React from 'react'
+import React from 'react';
+import { useContext } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import {AiOutlineHeart, AiFillStar} from "react-icons/ai";
 import {FaShoppingCart} from "react-icons/fa";
+import { DataContext } from '../../../Contexts/data/dataContext';
 
 
 export const ProductCard = ({prod}) => {
+  
+  let {dataDispatch, cart} = useContext(DataContext);
 
   const navigate = useNavigate();
-    const {_id, title, author, image, price, newPrice, discount,
+    const {id, title, author, image, price, newPrice, discount,
         rating,Language,  } = prod;
+
+      const handleAddCart = (prod) => {
+        dataDispatch({
+          type: "Add_to_cart",
+          payload: prod,
+        })
+      };
+
+
   return (
-    <div className='product-card' key={_id}>
+    <li className='product-card' key={id}>
       {/* <Link to={`/products/${_id}`}> */}
-       <div className="card-image" onClick={()=> navigate(`/products/${_id}`)} > 
+       <div className="card-image" onClick={()=> navigate(`/products/${id}`)} > 
           <img className='image' src={image} alt={"random"}  />
           
       </div>
@@ -48,11 +61,11 @@ export const ProductCard = ({prod}) => {
         
       </div>
       <div className="button">
-        <button className='btn'>
+        <button className='btn' onClick={()=>handleAddCart(prod)}>
           <FaShoppingCart/><span>Add to cart</span>
         </button>
       </div>
-    </div>
+    </li>
   )
 }
 
