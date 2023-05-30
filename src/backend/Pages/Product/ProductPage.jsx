@@ -8,12 +8,12 @@ import { BsTagFill, BsLightningFill } from "react-icons/bs";
 export const ProductPage = () => {
   const { productId } = useParams();
   const { products } = useContext(DataContext);
-  const product = products.find((prod) => prod._id === productId);
+  const product = products.find((prod) => prod.id === productId);
 
   //console.log(product);
 
   const {
-    _id, title, author, image, price, newPrice, discount,
+    id, title, author, image, price, newPrice, discount,
     Pages, Language, rating, categoryName, cashOnDelivery,
     fastDelivery,
   } = product;
@@ -22,7 +22,7 @@ export const ProductPage = () => {
       <div className="product-page-main">
         <div className="main-sections">
           <div className="image-container">
-            <img src={image} alt={`random${_id}`} />
+            <img src={image} alt={`random${id}`} />
           </div>
           <div className="details-container">
             <div className="title">
