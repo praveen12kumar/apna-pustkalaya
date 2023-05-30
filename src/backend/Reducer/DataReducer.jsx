@@ -1,6 +1,7 @@
 export const dataReducer = (state, {type, payload})=>{
     
      //console.log("cate",state.category);
+     const{category} = state
      
     switch(type){
         case "Add_Category":
@@ -16,20 +17,20 @@ export const dataReducer = (state, {type, payload})=>{
             return {...state, cart:[...state.cart, payload]};
         
         case "show_btn":
-            // console.log(payload);
-            return {...state, filterCategory:[...state.filterCategory, payload]}
+             //console.log(category);
+            return {...state, activeFilterCategory:[]};
 
         case "Filter-Categories":
             return{
-                ...state, filterCategory: [...state.filterCategory, `${payload}`]
+                ...state, activeFilterCategory: [`${payload}`]
             }
         
         case "add_filter_category":
-            return {...state, filterCategory:[...state.filterCategory, payload]}
+            return {...state, activeFilterCategory:[...state.activeFilterCategory, payload]}
 
-        // case "delete_filter_category":
-        //     return{...state, filterCategory: [...state.filterCategory.filter((cate)=> cate !== payload)
-        //     }
+        case "delete_filter_category":
+            return{...state, activeFilterCategory: [...state.activeFilterCategory.filter((cate)=> cate !== payload)]
+            }
 
         case "filterPrice":
             return{
@@ -44,8 +45,9 @@ export const dataReducer = (state, {type, payload})=>{
         case "clearFilters":
             return{...state, 
             sortBy: "",
-            priceRange: 0,
+            priceRange: 1500,
             rating: 0,
+            activeFilterCategory:[],
             
     }
             

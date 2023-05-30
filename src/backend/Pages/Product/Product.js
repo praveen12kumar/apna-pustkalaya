@@ -7,14 +7,18 @@ import { DataContext } from "../../Contexts/data/dataContext";
 
 export const Product = () => {
   
-  const {products} = useContext(DataContext);
   // console.log(products)
-  const {filterCategory} = useContext(DataContext);
-  const [productData, setProductData] = useState(products);
+  let {dataDispatch, category,filterCategory,sortBy, priceRange, rating,products, activeFilterCategory } = useContext(DataContext);
+  
   
  
- 
+  let priceFilter = products.filter((item) => item.newPrice <= priceRange)
+  let CategoryFilter = activeFilterCategory.length === 0 ? priceFilter : priceFilter.filter((item) => activeFilterCategory.includes(item.categoryName));
+  let RatingFilter = rating.length === 0 ? CategoryFilter : CategoryFilter.filter((item)=> item.rating >= rating);
+  let finalData = sortBy.length === 0 ? RatingFilter : sortBy === "lowToHigh" ? RatingFilter.sort(function(a, b){return a.newPrice - b.newPrice}) : RatingFilter.sort(function(a, b){return b.newPrice - a.newPrice});
 
+  //const [filteredData, setFilteredData] = useState(RatingFilter);
+  
 
   return (
     <div className="product-container">
@@ -22,10 +26,10 @@ export const Product = () => {
        
       <div className="product-list-section">
         <div className="product-header">
-          {productData.length > 0 ? (
+          {finalData.length > 0 ? (
             <>
               <h3>Showing All Products</h3>
-              <span>({productData.length}{" "}products)</span>
+              <span>({finalData.length}{" "}products)</span>
             </>
           ) : (
              
@@ -36,8 +40,7 @@ export const Product = () => {
             
         <div className="product-section">
           {/* {console.log(filterCategory)} */}
-          {productData.filter((prod)=>(
-              filterCategory === "All" ? true : prod.categoryName === filterCategory)).map((prod) => (
+          {finalData.map((prod) => (
             <ProductCard prod = {prod}/>
           ))}
         </div>
