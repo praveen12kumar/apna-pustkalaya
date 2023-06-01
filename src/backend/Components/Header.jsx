@@ -5,7 +5,8 @@ import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-ic
 import { DataContext } from "../Contexts/data/dataContext";
 
 export const Header = () => {
-  let {category,sortBy, priceRange, rating,products, cart } = useContext(DataContext);
+  let {category,sortBy, priceRange, rating,products, cart, cartLength, wishlistLength } = useContext(DataContext);
+  // console.log("cartLength", cartLength);
   const navigate = useNavigate();
   return (
     <div className="header">
@@ -32,12 +33,12 @@ export const Header = () => {
           <button className="btn" onClick={()=> navigate('/login') }>Login </button>
           <div className="wishlist">
             <AiOutlineHeart/>
-            <span className="wishlistItem">0</span>
+            <span className="wishlistItem">{wishlistLength}</span>
           </div>
 
           <div className="cart" onClick={()=> navigate('/cart')}>
             <AiOutlineShoppingCart/>
-            <span className="cartItem">{cart.length}</span>
+            <span className="cartItem">{cartLength}</span>
           </div>
         </div>
       </div>

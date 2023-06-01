@@ -1,7 +1,7 @@
 export const dataReducer = (state, {type, payload})=>{
     
      //console.log("cate",state.category);
-     //const{category} = state
+     const{cartLength, wishlistLength} = state
      
     switch(type){
         case "Add_Category":
@@ -13,9 +13,15 @@ export const dataReducer = (state, {type, payload})=>{
             return{
                 ...state, products:[...state.products, ...payload]
             };
-        // case "Add_to_cart":
-        //     return {...state, cart:[...state.cart, payload]};
+        case "Add_to_cart":
+            return {...state, cartLength:cartLength+1, cart:[...state.cart, payload]};
         
+        case "fetch_cart":
+            return {...state, cart:[...payload], cartLength: payload.length }
+
+        case "logout":
+            return {...state, cart:[], cartLength:0, wishlistLength:0, wishlist:[]}
+
         case "show_btn":
              //console.log(category);
             return {...state, activeFilterCategory:[]};

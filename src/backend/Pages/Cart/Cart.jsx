@@ -1,14 +1,15 @@
 import React from 'react'
-import {  useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 
 import { SingleCartCard } from './Components/SingleCartCard'
 
 import "./cart.scss";
+import { DataContext } from '../../Contexts/data/dataContext';
 
 
 export const Cart = () => {
-
-  const [cart, setCart] = useState([]);
+const {cart, setCart} = useContext(DataContext);
+  
   const getData = async() =>{
     const token = localStorage.getItem("encodedToken");
     
@@ -27,22 +28,16 @@ export const Cart = () => {
         console.log(err);
     }
   }
-
+  console.log("cart", cart);
   
   useEffect(()=>{
     getData();
   },[]);
 
 
-
-    
-    
-    
-
-
   return (
     <div className='cart-container'>
-        <div className="cart-title" ><p>Cart <span>({cart.length})</span></p></div>
+        <div className="cart-title" ><p>Cart <span>{cart.length}</span></p></div>
         <div className="cart-main-container">
             <div className="cart-cards">
             {

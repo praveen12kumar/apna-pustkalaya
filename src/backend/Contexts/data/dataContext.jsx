@@ -1,18 +1,25 @@
 import axios from "axios";
-import {createContext, useEffect, useReducer} from "react";
+import {createContext, useEffect, useReducer, useState} from "react";
 import {dataReducer} from "../../Reducer/DataReducer";
 export const DataContext = createContext();
-
 export const DataProvider = ({children})=>{
+
+    
+
+
+
     const initialState = {
         sortBy: "",
         priceRange: 1500,
         category: [],
         rating: 0,
         products: [],
-        allProducts: [],
         cart: [],
+        cartLength:0,
+        
         wishlist: [],
+        wishlistLength:0,
+     
         address: [],
         search: "",
         filterCategory:["Fiction", "Non-Fiction", "self-help"],
@@ -56,7 +63,11 @@ export const DataProvider = ({children})=>{
             allProducts: state.allProducts,
             dataDispatch: dispatch,
             cart: state.cart,
+            cartLength: state.cartLength,
+            
             wishlist: state.wishlist,
+            wishlistLength: state.wishlistLength,
+            
             search: state.search,
             address: state.address,
             filterCategory: state.filterCategory,

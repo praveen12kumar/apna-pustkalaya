@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext,  } from 'react';
+import { useContext, useState  } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import {AiOutlineHeart, AiFillStar} from "react-icons/ai";
 import {FaShoppingCart} from "react-icons/fa";
@@ -7,19 +7,23 @@ import { DataContext } from '../../../Contexts/data/dataContext';
 
 
 export const ProductCard = ({prod}) => {
-  
-  let {dataDispatch, cart} = useContext(DataContext);
+  let result = {};
+  let {dataDispatch,cart} = useContext(DataContext);
+  const [inCart, setInCart] = useState(false)
 
   const navigate = useNavigate();
     const {id, title, author, image, price, newPrice, discount,
         rating,Language,  } = prod;
 
       const handleAddCart = async (prod) => {
-        // dataDispatch({
-        //   type: "Add_to_cart",
-        //   payload: prod,
-        // })
         
+        
+        if(inCart) {
+          navigate('/cart');
+        }
+        else{
+        setInCart(true);
+
         try {
            const prod1 = {
             product: prod
@@ -33,14 +37,19 @@ export const ProductCard = ({prod}) => {
               body: JSON.stringify(prod1)
             });
             // saving the encodedToken in the localStorage
-            const result = await response.json();
-            console.log(result);
+            result = await response.json();
+            
+            dataDispatch({
+              type: "Add_to_cart",
+              payload: prod,
+            })
           } catch (error) {
             console.log(error);
           }
+        }
 
       };
-
+     
 
   return (
     <li className='product-card' key={id}>
@@ -81,11 +90,19 @@ export const ProductCard = ({prod}) => {
         
       </div>
       <div className="button">
-        <button className='btn' onClick={()=>handleAddCart(prod)}>
-          <FaShoppingCart/><span>Add to cart</span>
-        </button>
+      
+       
+        <button className='btn' style={{}} onClick={()=>handleAddCart(prod)}>
+          <FaShoppingCart/><span>{ inCart ? "Go to Cart" : "Add to Cart"}</span>
+        </button> 
+        
+        
+        
+       
       </div>
     </li>
   )
 }
+
+
 

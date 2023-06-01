@@ -1,11 +1,16 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { DataContext } from "../../Contexts/data/dataContext";
 import "./login.scss";
 
 export const Login = () => {
+
+  const {dataDispatch, cartLength, wishlistLength,  cart, wishlist} = useContext(DataContext);
+  
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
@@ -26,7 +31,32 @@ export const Login = () => {
       } catch (error) {
         console.log(error);
       }
+      try{
+        const response = await fetch("/api/user/cart",{
+          method: "GET",
+          headers: {
+            "authorization": localStorage.getItem("encodedToken"),
+          }
+        })
+        const result =  await response.json();
+        dataDispatch({
+          type:"fetch_cart",
+          payload: result.cart,
+        })
+    }
+      catch(err){
+        console.log(err);
+    }
   };
+
+
+  const handleLogout = ()=>{
+    localStorage.removeItem("encodedToken");
+    dataDispatch({
+      type:"logout",
+      
+    })
+  }
 
   return (
     <div className="Container">
@@ -62,6 +92,8 @@ export const Login = () => {
         </form>
         <button onClick={()=> navigate('../register')}>Don't have account? Register here</button>
       </div>
+
+      <button onClick={handleLogout} >Logout</button>
     </div>
   );
 };
