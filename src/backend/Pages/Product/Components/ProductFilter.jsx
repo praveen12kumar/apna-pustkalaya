@@ -5,11 +5,11 @@ export const ProductFilter = () => {
   const [filteredData, setFilteredData] = useState([]);
   const ratingArray = [1, 2, 3, 4];
   
-  let {dataDispatch, category,filterCategory,sortBy, priceRange, rating,products, activeFilterCategory } = useContext(DataContext);
-  console.log("Rating",rating, "sortBy", sortBy, "PriceRange", priceRange, activeFilterCategory);
+  let {dataDispatch, category,sortBy, priceRange, rating,products, activeFilterCategory } = useContext(DataContext);
+  //console.log("Rating",rating, "sortBy", sortBy, "PriceRange", priceRange, activeFilterCategory);
 
   const categoryHandler = (category) =>{
-    console.log("clicked", category, activeFilterCategory);
+    // console.log("clicked", category, activeFilterCategory);
     
       if(activeFilterCategory.includes(category)){
         dataDispatch({
@@ -30,7 +30,7 @@ export const ProductFilter = () => {
   return (
     
     <div className="filter-container">
-      {console.log(activeFilterCategory)}
+      {/* {console.log(activeFilterCategory)} */}
       <div className="filter">
         <h3>Filter</h3>
       </div>

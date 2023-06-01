@@ -1,7 +1,7 @@
 export const dataReducer = (state, {type, payload})=>{
     
      //console.log("cate",state.category);
-     const{category} = state
+     //const{category} = state
      
     switch(type){
         case "Add_Category":
@@ -13,8 +13,8 @@ export const dataReducer = (state, {type, payload})=>{
             return{
                 ...state, products:[...state.products, ...payload]
             };
-        case "Add_to_cart":
-            return {...state, cart:[...state.cart, payload]};
+        // case "Add_to_cart":
+        //     return {...state, cart:[...state.cart, payload]};
         
         case "show_btn":
              //console.log(category);

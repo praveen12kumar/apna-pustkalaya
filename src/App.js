@@ -6,6 +6,11 @@ import {Home} from "../src/backend/Pages/Home/Home"
 import { Product } from './backend/Pages/Product/Product';
 import {ProductPage} from "./backend/Pages/Product/ProductPage";
 import {Cart} from "./backend/Pages/Cart/Cart";
+import {Login} from "./backend/Pages/Login/Login";
+import { Register } from './backend/Pages/Login/Register';
+
+
+
 // CSS
 import "./backend/styles/app.scss";
 import "./backend/styles/utils.scss";
@@ -30,6 +35,8 @@ function App() {
         <Route path="/products" element={<Product />} />
         <Route path="/products/:productId" element={<ProductPage />} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
 
     </div>
