@@ -1,0 +1,27 @@
+.card{
+    width: 90%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0.5rem 0px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 15px;
+    >.card-container{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding: 1rem 0px;
+        justify-content: space-around;
+        >.card-image{
+            width: 150px;
+            height: 190px; 
+            >img{
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+            }
+        }
+    }
+}

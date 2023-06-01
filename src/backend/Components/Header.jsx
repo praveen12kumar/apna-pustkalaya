@@ -1,11 +1,11 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useContext,  } from "react";
 import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { DataContext } from "../Contexts/data/dataContext";
-import { useNavigate } from "react-router-dom";
+
 export const Header = () => {
-  let {category,sortBy, priceRange, rating,products } = useContext(DataContext);
+  let {category,sortBy, priceRange, rating,products, cart } = useContext(DataContext);
   const navigate = useNavigate();
   return (
     <div className="header">
@@ -29,7 +29,7 @@ export const Header = () => {
         </div>
 
         <div className="header-options">
-          <button className="btn" onClick={()=> console.log("cate", category, "price", priceRange,"rating", rating , products)}   >Login </button>
+          <button className="btn" onClick={()=> navigate('/login') }>Login </button>
           <div className="wishlist">
             <AiOutlineHeart/>
             <span className="wishlistItem">0</span>
@@ -37,7 +37,7 @@ export const Header = () => {
 
           <div className="cart" onClick={()=> navigate('/cart')}>
             <AiOutlineShoppingCart/>
-            <span className="cartItem">0</span>
+            <span className="cartItem">{cart.length}</span>
           </div>
         </div>
       </div>

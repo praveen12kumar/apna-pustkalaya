@@ -1,0 +1,91 @@
+@import"../../styles/utils.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.Container{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(232, 235, 241);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    >.loginSection{
+        width: 400px;
+        height: 500px;
+        margin-top: -6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.2)0px 10px 15px;
+
+        >h1{
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: Poppins;
+            font-size: 20px;
+            letter-spacing: 2px;
+            padding: 0.5rem 0px;
+        }
+        >form{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+
+            >label{
+                font-size: 12px;
+                font-family: Roboto;
+                font-weight: 500;
+                letter-spacing: 1px;
+                padding: 0.5rem 0px ;
+            }
+            >input{
+                padding: 0.4rem 0.4rem;
+                margin-bottom: 1rem 0px;
+                outline: none;
+                border-radius: 3px;
+                border: 2px solid lightgray;
+                font-family: Roboto;
+                &:hover{
+                    border: 2px solid $background-secondary;
+                }
+            }
+            >.reg-btns{
+                margin:1rem 0px;
+                display: flex;
+                justify-content: space-between;
+
+                >.btn{
+                    color: $color;
+                    background-color: $background-secondary;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    letter-spacing: 2px;
+                    border: none;
+
+                    &:hover{
+                        background-color: rgb(22, 22, 93);
+                    }
+                }
+
+                >.regbtn{
+                    width: 100%;
+                    padding: 0.5rem 1rem;
+                }
+
+               
+            }
+        }
+
+        >button{
+            padding: 0.5rem 1rem;
+            border: 2px solid darkgray;
+            border-radius: 5px;
+            background-color: $color;
+
+            
+
+        }
+    }
+}

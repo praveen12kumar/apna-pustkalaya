@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useContext,  } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import {AiOutlineHeart, AiFillStar} from "react-icons/ai";
 import {FaShoppingCart} from "react-icons/fa";
@@ -14,11 +14,31 @@ export const ProductCard = ({prod}) => {
     const {id, title, author, image, price, newPrice, discount,
         rating,Language,  } = prod;
 
-      const handleAddCart = (prod) => {
-        dataDispatch({
-          type: "Add_to_cart",
-          payload: prod,
-        })
+      const handleAddCart = async (prod) => {
+        // dataDispatch({
+        //   type: "Add_to_cart",
+        //   payload: prod,
+        // })
+        
+        try {
+           const prod1 = {
+            product: prod
+           }
+           const encodedToken = localStorage.getItem("encodedToken");
+            const response = await fetch(`/api/user/cart`, {
+              method: 'POST',
+              headers: {
+                "authorization": encodedToken
+              },
+              body: JSON.stringify(prod1)
+            });
+            // saving the encodedToken in the localStorage
+            const result = await response.json();
+            console.log(result);
+          } catch (error) {
+            console.log(error);
+          }
+
       };
 
 
