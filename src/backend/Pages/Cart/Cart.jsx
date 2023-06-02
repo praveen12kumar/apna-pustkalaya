@@ -1,8 +1,7 @@
 import React from 'react'
 import { useContext, useState, useEffect } from 'react'
-
 import { SingleCartCard } from './Components/SingleCartCard'
-
+import { EmptyCart } from './Components/EmptyCart';
 import "./cart.scss";
 import { DataContext } from '../../Contexts/data/dataContext';
 
@@ -38,7 +37,8 @@ const {cart, dataDispatch} = useContext(DataContext);
 
 
   return (
-    <div className='cart-container'>
+    cart.length >= 1 ? (
+      <div className='cart-container'>
         <div className="cart-title" ><p>Cart <span>{cart.length}</span></p></div>
         <div className="cart-main-container">
             <div className="cart-cards">
@@ -53,6 +53,9 @@ const {cart, dataDispatch} = useContext(DataContext);
             </div>    
         </div>    
     </div>
+    ) : (
+      <EmptyCart/>
+    )
   )
 }
 

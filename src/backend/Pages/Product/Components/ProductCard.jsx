@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext, useState  } from 'react';
 import {  useNavigate } from 'react-router-dom';
-import {AiOutlineHeart, AiFillStar} from "react-icons/ai";
+import {AiFillHeart, AiFillStar} from "react-icons/ai";
 import {FaShoppingCart} from "react-icons/fa";
 import { DataContext } from '../../../Contexts/data/dataContext';
 
@@ -9,7 +9,7 @@ import { DataContext } from '../../../Contexts/data/dataContext';
 export const ProductCard = ({prod}) => {
   
   let result = {};
-  let {dataDispatch,cart} = useContext(DataContext);
+  let {dataDispatch,cart, products} = useContext(DataContext);
 
   const isInCart = cart.find((item)=> item._id === prod._id)
 
@@ -42,7 +42,13 @@ export const ProductCard = ({prod}) => {
           }
         }
 
-    
+    const handleWishlist = (prod)=>{
+      const wishItem = products.find((item)=> item._id === prod._id);
+        dataDispatch({
+          type: "Add_to_Wishlist",
+          payload: wishItem,
+        })
+    }
      
 
   return (
@@ -54,7 +60,7 @@ export const ProductCard = ({prod}) => {
       </div>
       {/* </Link> */}
       <div className="heart">
-            <AiOutlineHeart/>
+           <button onClick={()=>handleWishlist(prod)} ><AiFillHeart/></button>
       </div>
       <div className="card-details">
         <div className="title-rating">

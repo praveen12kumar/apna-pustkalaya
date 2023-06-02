@@ -2,6 +2,7 @@ import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import { useContext,  } from "react";
 import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import {CgProfile} from "react-icons/cg";
 import { DataContext } from "../Contexts/data/dataContext";
 
 export const Header = () => {
@@ -31,7 +32,7 @@ export const Header = () => {
 
         <div className="header-options">
           <button className="btn" onClick={()=> navigate('/login') }>Login </button>
-          <div className="wishlist">
+          <div className="wishlist" onClick={()=>navigate('/wishlist')}>
             <AiOutlineHeart/>
             <span className="wishlistItem">{wishlistLength}</span>
           </div>
@@ -39,6 +40,10 @@ export const Header = () => {
           <div className="cart" onClick={()=> navigate('/cart')}>
             <AiOutlineShoppingCart/>
             <span className="cartItem">{cartLength}</span>
+          </div>
+
+          <div className="profile" onClick={()=> navigate('/profile')}>
+            <CgProfile/>
           </div>
         </div>
       </div>

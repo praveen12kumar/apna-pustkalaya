@@ -69,6 +69,9 @@ export const dataReducer = (state, {type, payload})=>{
         case "decreaseQty":
             return{...state, cart:[...payload]}
 
+        case "Add_to_Wishlist":
+            return{... state, wishlist:[...state.wishlist,  payload], wishlistLength: wishlistLength+1  } 
+
         default:
             return state;
     }

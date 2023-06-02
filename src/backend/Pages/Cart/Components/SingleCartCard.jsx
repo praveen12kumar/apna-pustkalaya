@@ -1,13 +1,14 @@
 import React from 'react'
 import { useContext } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import "./singleCartCard.scss";
+
 import { DataContext } from '../../../Contexts/data/dataContext';
 
 export const SingleCartCard = ({card, index}) => {
 
     const {dataDispatch, cart} = useContext(DataContext);
-
+    const navigate = useNavigate();
 
     const {_id, title, author, image, price, newPrice, discount, qty} = card;
 
@@ -35,6 +36,10 @@ export const SingleCartCard = ({card, index}) => {
            } catch (error) {
              console.log(error);
            }
+         }
+
+         const handleRemove = (id)=>{
+            
          }
  
     
@@ -64,7 +69,7 @@ export const SingleCartCard = ({card, index}) => {
                 <button value={"increment"} onClick={(e)=> handleQty(e, card)}>+</button>
             </div>
             <div className="card-btn">
-                <button className='remove-btn' >Remove</button>
+                <button className='remove-btn' onClick={()=> handleRemove(_id)}  >Remove</button>
                 <button className='move-btn'>Move to wishlist</button>
             </div>
         </div>

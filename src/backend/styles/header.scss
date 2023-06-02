@@ -117,6 +117,14 @@
             font-weight: 500;
         }
       }
+      >.profile{
+        height: 32px;
+        font-size: 25px;
+        color:$color;
+        padding: 0 0.5rem;
+        margin-top: 5px;
+        display: flex;
+      }
     }
   }
 }

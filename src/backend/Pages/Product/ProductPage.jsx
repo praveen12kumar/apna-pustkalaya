@@ -8,6 +8,11 @@ import { BsTagFill, BsLightningFill } from "react-icons/bs";
 export const ProductPage = () => {
   const { productId } = useParams();
   const { products } = useContext(DataContext);
+
+
+  const handleWishlist = ()=>{
+    console.log("Wishlist");
+  }
   
   const product = products.find((prod) => prod._id === productId);
 
@@ -91,10 +96,8 @@ export const ProductPage = () => {
           </div>
         </div>
         <div className="buttons">
-            
-                <button className="btn"><AiOutlineShoppingCart/> <span>Add to Cart</span> </button> 
-                <button className="btn"><AiOutlineHeart/> <span>Add to Wishlist</span> </button>
-           
+            <button className="btn"><AiOutlineShoppingCart/> <span>Add to Cart</span> </button> 
+            <button className="btn" ><AiOutlineHeart/> <span>Add to Wishlist</span> </button>   
         </div>
       </div>
     </div>

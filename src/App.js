@@ -8,8 +8,8 @@ import {ProductPage} from "./backend/Pages/Product/ProductPage";
 import {Cart} from "./backend/Pages/Cart/Cart";
 import {Login} from "./backend/Pages/Login/Login";
 import { Register } from './backend/Pages/Login/Register';
-
-
+import { Wishlist } from './backend/Pages/Wishlist/Wishlist';
+import Profile from './backend/Pages/Profile/Profile';
 
 // CSS
 import "./backend/styles/app.scss";
@@ -21,6 +21,7 @@ import "./backend/Pages/Product/product.scss";
 import "./backend/Pages/Product/Components/productFilter.scss";
 import "./backend/Pages/Product/Components/productCard.scss";
 import "./backend/Pages/Product/productPage.scss";
+
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/wishlist" element={<Wishlist/>} />
+        <Route path="/profile" element={<Profile />} />
+       
       </Routes>
 
     </div>
