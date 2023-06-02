@@ -13,7 +13,7 @@ import { DataContext} from "../../Contexts/data/dataContext";
 export const Home = () => {
   const navigate = useNavigate();
   const {dataDispatch} = useContext(DataContext);
-  let {products, category, filterCategory, activeFilterCategory} = useContext(DataContext);
+  let { category} = useContext(DataContext);
 
   const handleCategory = (categoryName) =>{
    
@@ -66,10 +66,10 @@ export const Home = () => {
             </p>
             <div className="category" >
             {category&&
-                 category.map(({ id, categoryName, description }) => {
+                 category.map(({ _id, categoryName, description }) => {
                   
                   return (
-                    <div className="category-box" key={id} onClick={()=>handleCategory(categoryName)} >
+                    <div className="category-box" key={_id} onClick={()=>handleCategory(categoryName)} >
                       <div className="detail-box">
                         <h4>{categoryName}</h4>
                         <p>{description}</p>

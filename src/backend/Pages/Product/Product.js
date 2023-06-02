@@ -5,17 +5,16 @@ import { ProductCard } from "./Components/ProductCard";
 import { DataContext } from "../../Contexts/data/dataContext";
 
 export const Product = () => {
-  // console.log(products)
+   
   let {
-    dataDispatch,
-    category,
-    filterCategory,
     sortBy,
     priceRange,
     rating,
     products,
     activeFilterCategory,
   } = useContext(DataContext);
+
+  
 
   let priceFilter = products.filter((item) => item.newPrice <= priceRange);
   let CategoryFilter =
@@ -59,8 +58,8 @@ export const Product = () => {
 
         <div className="product-section">
           {/* {console.log(filterCategory)} */}
-          {finalData.map((prod) => (
-            <ProductCard prod={prod} />
+          {finalData.map((prod, index) => (
+            <ProductCard prod={prod} index={index} />
           ))}
         </div>
       </div>

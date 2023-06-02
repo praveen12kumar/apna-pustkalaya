@@ -7,21 +7,17 @@ import { DataContext } from '../../../Contexts/data/dataContext';
 
 
 export const ProductCard = ({prod}) => {
+  
   let result = {};
   let {dataDispatch,cart} = useContext(DataContext);
-  const [inCart, setInCart] = useState(false)
 
-  const isInCart = cart.find((item)=> item.id === prod.id)
-
+  const isInCart = cart.find((item)=> item._id === prod._id)
 
   const navigate = useNavigate();
-    const {id, title, author, image, price, newPrice, discount,rating,Language,  } = prod;
-
-
+    const {_id, title, author, image, price, newPrice, discount,rating,Language,  } = prod;
 
       const handleAddCart = async (prod) => {
         
-
         try {
            const prod1 = {
             product: prod
@@ -50,9 +46,9 @@ export const ProductCard = ({prod}) => {
      
 
   return (
-    <li className='product-card' key={id}>
+    <li className='product-card' key={_id}>
       {/* <Link to={`/products/${_id}`}> */}
-       <div className="card-image" onClick={()=> navigate(`/products/${id}`)} > 
+       <div className="card-image" onClick={()=> navigate(`/products/${_id}`)} > 
           <img className='image' src={image} alt={"random"}  />
           
       </div>
@@ -88,8 +84,6 @@ export const ProductCard = ({prod}) => {
         
       </div>
       <div className="button">
-
-
         {
           isInCart ? <button className='btn' style={{}} onClick={()=> navigate('/cart')}>
                     <FaShoppingCart/><span> Go to Cart </span>
@@ -98,14 +92,7 @@ export const ProductCard = ({prod}) => {
               <button className='btn' style={{}} onClick={()=>handleAddCart(prod)}>
               <FaShoppingCart/><span> Add to Cart</span>
              </button> 
-            
-
-
         }
-       
-        
-        
-        
        
       </div>
     </li>

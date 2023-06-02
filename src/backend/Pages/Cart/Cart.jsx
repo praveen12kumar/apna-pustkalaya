@@ -22,10 +22,10 @@ const {cart, dataDispatch} = useContext(DataContext);
         })
         const result =  await response.json();
         console.log(result);
-        // dataDispatch({
-        //   type:"updateCart",
-        //   payload: result.cart
-        // })
+        dataDispatch({
+          type:"updateCart",
+          payload: result.cart
+        })
     }
     catch(err){
         console.log(err);
@@ -39,12 +39,12 @@ const {cart, dataDispatch} = useContext(DataContext);
 
   return (
     <div className='cart-container'>
-        <div className="cart-title" ><p>Cart <span>{0}</span></p></div>
+        <div className="cart-title" ><p>Cart <span>{cart.length}</span></p></div>
         <div className="cart-main-container">
             <div className="cart-cards">
             {
-              cart.map((card)=>(
-                  <SingleCartCard card={card}/>
+              cart.map((card, index)=>(
+                  <SingleCartCard card={card} index={index}/>
               ) )
             }
             </div>

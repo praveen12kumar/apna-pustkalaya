@@ -1,7 +1,7 @@
 export const dataReducer = (state, {type, payload})=>{
     
      //console.log("cate",state.category);
-     const{cartLength, wishlistLength} = state
+    const{cartLength, wishlistLength} = state
      
     switch(type){
         case "Add_Category":

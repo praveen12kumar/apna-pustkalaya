@@ -4,24 +4,24 @@ import { useContext } from 'react';
 import "./singleCartCard.scss";
 import { DataContext } from '../../../Contexts/data/dataContext';
 
-export const SingleCartCard = ({card}) => {
+export const SingleCartCard = ({card, index}) => {
 
     const {dataDispatch, cart} = useContext(DataContext);
 
 
-    const {id, title, author, image, price, newPrice, discount, qty} = card;
+    const {_id, title, author, image, price, newPrice, discount, qty} = card;
 
     const handleQty = async(e, card) => {
         
         try {
             const encodedToken = localStorage.getItem("encodedToken");
-             const response = await fetch(`/api/user/cart/${card.id}`, {
+             const response = await fetch(`/api/user/cart/${card._id}`, {
                method: 'POST',
                headers: {
                  "authorization": encodedToken
                },
                body: JSON.stringify({
-                  action:  {type:"increment"} 
+                  action:  {type:e.target.value} 
               })
              });
              // saving the encodedToken in the localStorage
@@ -39,15 +39,15 @@ export const SingleCartCard = ({card}) => {
  
     
   return (
-    <div className='card'>
+    <div className='card' key={index}>
      <div className="card-container">
         <div className="card-image">
             <img src={image} alt={title} />
         </div>
         <div className="card-details">
-            <h3>{title}</h3>
-            <h4>{author}</h4>
-            <div className='card-price'>
+            <h3 className='cart-title'>{title}</h3>
+            <h4 className='cart-author'>Author: {author}</h4>
+            <div className='price-details'>
                 <div className="cprice">
                     <h4>₹{newPrice} </h4>
                 </div>
@@ -59,17 +59,16 @@ export const SingleCartCard = ({card}) => {
                 </div>
             </div>
             <div className="card-quantity">
-                <button value={"decrement"} onClick={(e)=>handleQty(e, card)}>-</button>
+                {qty > 1 ? <button value={"decrement"} onClick={(e)=>handleQty(e, card)}>-</button> : <button>-</button>}
                 <span>{qty}</span>
                 <button value={"increment"} onClick={(e)=> handleQty(e, card)}>+</button>
             </div>
+            <div className="card-btn">
+                <button className='remove-btn' >Remove</button>
+                <button className='move-btn'>Move to wishlist</button>
+            </div>
         </div>
-        
      </div>
-     <div className="card-btn">
-        <button>Remove</button>
-        <button>Move to wishlist</button>
-        </div>
     </div>
   )
 }

@@ -1,35 +1,40 @@
-@import"../../styles/utils.scss";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import "../../styles/utils.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
+.cart-container {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  padding: 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: rgb(231, 233, 238);
 
-.cart-container{
-    width: 100%;
-    height: 100vh;
+  >.cart-title {
+    font-family: Poppins;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  >.cart-main-container {
+    width: 70%;
     display: flex;
-    padding: 1.5rem;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    background-color: rgb(231, 233, 238);
-    border: 1px solid red;
-    >.cart-title{
-        font-family: Poppins;
-        font-weight: 600;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
+    justify-content: space-between;
+    
 
-    >.cart-main-container{
-        width: 70%;
-        display: flex;
-        justify-content: space-around;
-        
-        >.cart-cards{
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 3rem;
-            }
-        }
+    >.cart-cards {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 2rem;
+    }
+    >.price-section{
+        width: 40%;
+        height: 500px;
+    }
+  }
 }

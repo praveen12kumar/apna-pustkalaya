@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+//import { v4 as uuid } from "uuid";
 
 /**
  * Product Database can be added here.
@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    id: uuid(),
+    _id: "cb6f8f47-d202-4929-ad85-308438ea4b1f",
     title:"Ignited Minds",
     author: "A. P. J. Abdul Kalam",
     image:"https://i.ibb.co/G9qbtLk/ignited-minds.png",
@@ -20,10 +20,10 @@ export const products = [
     categoryName:"self-help",
     cashOnDelivery:true,
     fastDelivery:true,
-    qty:5, 
+     
   },
   {
-    id: uuid(),
+    _id: "84b681a3-fbb7-48e5-bed8-25cd63dcefd2",
     title:"Rich Dad Poor Dad ",
     author: "Robert T. Kiyosaki",
     image:"https://i.ibb.co/VNV5QY1/rich-dad-poor-dad.png",
@@ -38,7 +38,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "d5863589-f0f7-4bbe-b316-8e9b6220a6d0",
     title:"Attitude is Everything:",
     author:"Keller Jeff",
     image:"https://i.ibb.co/JngdDcc/attitude-is-everything.png",
@@ -53,7 +53,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "5b796868-4182-48f3-9d82-06f321a9504d",
     title:"Think Like a Monk",
     author:"Jay Shetty",
     image:"https://i.ibb.co/7QJ8Tj0/think-like-a-monl.png",
@@ -68,7 +68,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "4810a571-c205-4ad6-a269-153e433e9194",
     title:"You Can",
     author:"Adams George Matthew",
     image:"https://i.ibb.co/JngdDcc/attitude-is-everything.png",
@@ -83,7 +83,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "5b796868-4182-48f3-9d82-06f321a9504d",
     title:"Zero to One",
     author:"Peter Thiel",
     image:"https://i.ibb.co/YcYcm03/zero-to-one.png",
@@ -98,7 +98,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "3477360f-ca7e-4dff-bcba-807fdc181544",
     title:"Silent Spring",
     author:"Carson Rachel",
     image:"https://i.ibb.co/9hfFx3Q/silent-spring.png",
@@ -113,7 +113,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "6b2b0fcf-a96e-4ba7-8241-fd9dcac2d339",
     title:"The Richest Man in Babylon ",
     author:"Clason George S.",
     image:"https://i.ibb.co/LZRpj1h/richest-man-in-the-babylon.png",
@@ -128,7 +128,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "8567c674-4e03-4080-8490-2ca8e147d120",
     title:"Sapiens",
     author:"Harari Yuval Noah",
     image:"https://i.ibb.co/LJLqKnq/sapians.png",
@@ -143,7 +143,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "65297154-a977-4a90-aa70-57a49273ba47",
     title:"Steve Jobs ",
     author:"Steve Jobs ",
     image:"https://i.ibb.co/0DkS3JG/steve-jobs.png",
@@ -158,7 +158,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "eecf6123-9ff1-4d83-aac3-166466464afe",
     title:"Quiet",
     author:"Cain Susan",
     image:"https://i.ibb.co/FgKR2YQ/Quiet.png",
@@ -173,7 +173,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "9ec5f2d4-b794-4647-b99b-48e83ce1beee",
     title:"Gaban",
     author:"Premchand",
     image:"https://i.ibb.co/hVm6y7X/premchandra.png",
@@ -188,7 +188,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "664d9372-52af-4734-96d4-a70b3bb90fe7",
     title:"ALL THE LIGHT WE CANNOT SEE",
     author:"Anthony Doerr",
     image:"https://i.ibb.co/YLtwS9R/light-we-can-not-see.png",
@@ -203,7 +203,7 @@ export const products = [
     fastDelivery:false, 
   },
   {
-    id: uuid(),
+    _id: "9a347e63-1e49-47ab-820b-8e71280e357a",
     title:"Believe in Yourself",
     author:"Joseph Murphy",
     image:"https://i.ibb.co/nkSyxWK/believe-in-yourself.png",
@@ -218,7 +218,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "6db74792-b7cc-45bf-a462-00eb3e00fa20",
     title:"The Blue Umbrella",
     author:"Bond Ruskin",
     image:"https://i.ibb.co/jR1pHj7/blue-ambrella.png",
@@ -233,7 +233,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "c1d3e01c-809e-4192-a14b-159ac412948d",
     title:"A Brief History Of Time",
     author:"Stephen Hawking",
     image:"https://i.ibb.co/LS7bzLD/a-brief-history-time.png",
@@ -248,7 +248,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "703b1976-acf4-42e7-811e-1f1bf9308b9c",
     title:"Harry Potter and the Philosopher's Stone",
     author:"Rowling J. K.",
     image:"https://i.ibb.co/rs8tSkP/harry-potter.png",
@@ -263,7 +263,7 @@ export const products = [
     fastDelivery:true, 
   },
   {
-    id: uuid(),
+    _id: "af21ac9d-2fe0-45d7-9076-0558e33e7ff6",
     title:"Ikigai",
     author:"HECTER GARCIA",
     image:"https://i.ibb.co/2cpW5r0/ekigai.png",

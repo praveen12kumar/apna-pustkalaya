@@ -5,7 +5,7 @@ import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-ic
 import { DataContext } from "../Contexts/data/dataContext";
 
 export const Header = () => {
-  let {category,sortBy, priceRange, rating,products, cart, cartLength, wishlistLength } = useContext(DataContext);
+  let {cartLength, wishlistLength } = useContext(DataContext);
   // console.log("cartLength", cartLength);
   const navigate = useNavigate();
   return (

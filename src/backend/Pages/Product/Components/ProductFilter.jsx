@@ -53,7 +53,7 @@ export const ProductFilter = () => {
                 <label>
                 {/* <input type="checkbox" id="checkbox1" name="checkbox" value={categoryName} /> */}
                 <input type="checkbox" id="checkbox1" name="checkbox" value={categoryName} checked={activeFilterCategory.includes(categoryName)} 
-                onClick={()=> categoryHandler(categoryName)}  />
+                onChange={()=> categoryHandler(categoryName)}  />
                 {categoryName}</label>
               </li>
             ))

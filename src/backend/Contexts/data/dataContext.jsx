@@ -1,12 +1,9 @@
 import axios from "axios";
 import {createContext, useEffect, useReducer, useState} from "react";
 import {dataReducer} from "../../Reducer/DataReducer";
+
 export const DataContext = createContext();
 export const DataProvider = ({children})=>{
-
-    
-
-
 
     const initialState = {
         sortBy: "",
@@ -16,10 +13,8 @@ export const DataProvider = ({children})=>{
         products: [],
         cart: [],
         cartLength:0,
-        
         wishlist: [],
         wishlistLength:0,
-     
         address: [],
         search: "",
         filterCategory:["Fiction", "Non-Fiction", "self-help"],
@@ -36,7 +31,7 @@ export const DataProvider = ({children})=>{
             })
 
             const {data: product} = await axios.get("/api/products");
-            //console.log(product);
+            // console.log(product.products);
             dispatch({
                 type:"Add_Product",
                 payload:product.products
@@ -46,8 +41,6 @@ export const DataProvider = ({children})=>{
             console.log(err);
         }
       }
-
-      
       useEffect(()=>{
         getData();
       },[]);
@@ -60,11 +53,9 @@ export const DataProvider = ({children})=>{
             priceRange: state.priceRange,
             category: state.category,
             products: state.products,
-            allProducts: state.allProducts,
             dataDispatch: dispatch,
             cart: state.cart,
             cartLength: state.cartLength,
-            
             wishlist: state.wishlist,
             wishlistLength: state.wishlistLength,
             
