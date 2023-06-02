@@ -19,7 +19,8 @@ export const products = [
     rating:3.7,
     categoryName:"self-help",
     cashOnDelivery:true,
-    fastDelivery:true, 
+    fastDelivery:true,
+    qty:5, 
   },
   {
     id: uuid(),

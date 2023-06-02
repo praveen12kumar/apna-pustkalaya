@@ -1,14 +1,43 @@
 import React from 'react'
-
+import { useContext } from 'react';
 
 import "./singleCartCard.scss";
+import { DataContext } from '../../../Contexts/data/dataContext';
 
 export const SingleCartCard = ({card}) => {
-    const {title, author, image, price, newPrice, discount} = card;
 
-    const handleplus = (e) => {
-        console.log(e);
-    }
+    const {dataDispatch, cart} = useContext(DataContext);
+
+
+    const {id, title, author, image, price, newPrice, discount, qty} = card;
+
+    const handleQty = async(e, card) => {
+        
+        try {
+            const encodedToken = localStorage.getItem("encodedToken");
+             const response = await fetch(`/api/user/cart/${card.id}`, {
+               method: 'POST',
+               headers: {
+                 "authorization": encodedToken
+               },
+               body: JSON.stringify({
+                  action:  {type:"increment"} 
+              })
+             });
+             // saving the encodedToken in the localStorage
+             const result = await response.json();
+             console.log(result.cart);
+             dataDispatch({
+               type: "updateCart",
+               payload: result.cart,
+             })
+            
+           } catch (error) {
+             console.log(error);
+           }
+         }
+ 
+    
   return (
     <div className='card'>
      <div className="card-container">
@@ -30,9 +59,9 @@ export const SingleCartCard = ({card}) => {
                 </div>
             </div>
             <div className="card-quantity">
-                <button>-</button>
-                <span>1</span>
-                <button onClick={(e)=> handleplus(e)}>+</button>
+                <button value={"decrement"} onClick={(e)=>handleQty(e, card)}>-</button>
+                <span>{qty}</span>
+                <button value={"increment"} onClick={(e)=> handleQty(e, card)}>+</button>
             </div>
         </div>
         

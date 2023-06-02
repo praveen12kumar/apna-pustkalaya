@@ -8,11 +8,11 @@ import { DataContext } from '../../Contexts/data/dataContext';
 
 
 export const Cart = () => {
-const {cart, setCart} = useContext(DataContext);
+const {cart, dataDispatch} = useContext(DataContext);
   
   const getData = async() =>{
     const token = localStorage.getItem("encodedToken");
-    
+    console.log(cart);
     try{
         const response = await fetch("/api/user/cart",{
           method: "GET",
@@ -21,14 +21,16 @@ const {cart, setCart} = useContext(DataContext);
           }
         })
         const result =  await response.json();
-        console.log(result.cart)
-        setCart(result.cart);
+        console.log(result);
+        // dataDispatch({
+        //   type:"updateCart",
+        //   payload: result.cart
+        // })
     }
     catch(err){
         console.log(err);
     }
   }
-  console.log("cart", cart);
   
   useEffect(()=>{
     getData();
@@ -37,7 +39,7 @@ const {cart, setCart} = useContext(DataContext);
 
   return (
     <div className='cart-container'>
-        <div className="cart-title" ><p>Cart <span>{cart.length}</span></p></div>
+        <div className="cart-title" ><p>Cart <span>{0}</span></p></div>
         <div className="cart-main-container">
             <div className="cart-cards">
             {

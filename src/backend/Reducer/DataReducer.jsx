@@ -53,10 +53,22 @@ export const dataReducer = (state, {type, payload})=>{
             sortBy: "",
             priceRange: 1500,
             rating: 0,
-            activeFilterCategory:[],
-            
-    }
-            
+            activeFilterCategory:[],    
+        }
+        case "updateCart":
+            return{
+                ...state, cart:[...payload]
+            }
+      
+
+        case "increaseQty":
+            return {
+                ...state,
+                cart:[...payload]
+              }
+        case "decreaseQty":
+            return{...state, cart:[...payload]}
+
         default:
             return state;
     }
