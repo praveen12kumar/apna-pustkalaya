@@ -14,8 +14,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("email", email);
-    console.log("password", password);
+  
   };
   return (
     <div className="Container">

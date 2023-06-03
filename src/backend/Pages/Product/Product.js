@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProductFilter } from "./Components/ProductFilter";
 import { ProductCard } from "./Components/ProductCard";
 import { DataContext } from "../../Contexts/data/dataContext";

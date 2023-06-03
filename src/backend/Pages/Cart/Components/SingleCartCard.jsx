@@ -27,9 +27,9 @@ export const SingleCartCard = ({card, index}) => {
              });
              // saving the encodedToken in the localStorage
              const result = await response.json();
-             console.log(result.cart);
+            //  console.log(result.cart);
              dataDispatch({
-               type: "updateCart",
+               type: "handleCart",
                payload: result.cart,
              })
             
@@ -38,9 +38,75 @@ export const SingleCartCard = ({card, index}) => {
            }
          }
 
-         const handleRemove = (id)=>{
+         const handleRemove = async(card)=>{
+          try {
+            const encodedToken = localStorage.getItem("encodedToken");
+             const response = await fetch(`/api/user/cart/${card._id}`, {
+               method: 'DELETE',
+               headers: {
+                 "authorization": encodedToken
+               },
+             });
+             // saving the encodedToken in the localStorage
+             const result = await response.json();
+            //  console.log(result.cart);
+             dataDispatch({
+               type: "handleCart",
+               payload: result.cart,
+             })
             
+           } catch (error) {
+             console.log(error);
+           }
+      }
+
+      const handleMoveToWishlist = async(card)=>{
+        
+        try {
+          const encodedToken = localStorage.getItem("encodedToken");
+           const response = await fetch(`/api/user/wishlist`, {
+             method: 'POST',
+             headers: {
+               "authorization": encodedToken
+             },
+             body: JSON.stringify({
+                product:card 
+            })
+           });
+           // saving the encodedToken in the localStorage
+           const result = await response.json();
+         
+           dataDispatch({
+             type: "handleWishlist",
+             payload: result.wishlist,
+           })
+          
+         } catch (error) {
+           console.log(error);
          }
+
+         try {
+          const encodedToken = localStorage.getItem("encodedToken");
+           const response = await fetch(`/api/user/cart/${card._id}`, {
+             method: 'DELETE',
+             headers: {
+               "authorization": encodedToken
+             },
+           });
+           // saving the encodedToken in the localStorage
+           const result = await response.json();
+           console.log("move to wishlist cart result",result.cart);
+           dataDispatch({
+             type: "handleCart",
+             payload: result.cart,
+           })
+          
+         } catch (error) {
+           console.log(error);
+         }
+       }
+      
+         
  
     
   return (
@@ -69,8 +135,8 @@ export const SingleCartCard = ({card, index}) => {
                 <button value={"increment"} onClick={(e)=> handleQty(e, card)}>+</button>
             </div>
             <div className="card-btn">
-                <button className='remove-btn' onClick={()=> handleRemove(_id)}  >Remove</button>
-                <button className='move-btn'>Move to wishlist</button>
+                <button className='remove-btn' onClick={()=> handleRemove(card)}  >Remove</button>
+                <button className='move-btn' onClick={()=>handleMoveToWishlist(card)} >Move to wishlist</button>
             </div>
         </div>
      </div>

@@ -7,7 +7,7 @@ import "./login.scss";
 
 export const Login = () => {
 
-  const {dataDispatch, cartLength, wishlistLength,  cart, wishlist} = useContext(DataContext);
+  const {dataDispatch, cartLength, wishlistLength,  cart, wishlist, isLoggedIn} = useContext(DataContext);
   
   const navigate = useNavigate();
 
@@ -28,6 +28,8 @@ export const Login = () => {
         // saving the encodedToken in the localStorage
         const result = await response.json();
         localStorage.setItem("encodedToken", result.encodedToken);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
       } catch (error) {
         console.log(error);
       }
@@ -52,6 +54,9 @@ export const Login = () => {
 
   const handleLogout = ()=>{
     localStorage.removeItem("encodedToken");
+    localStorage.removeItem("email", email);
+    localStorage.removeItem("password", password);
+   
     dataDispatch({
       type:"logout",
       

@@ -19,6 +19,8 @@ export const DataProvider = ({children})=>{
         search: "",
         filterCategory:["Fiction", "Non-Fiction", "self-help"],
         activeFilterCategory: [],
+        isLoggedIn:false,
+        address:[{Add_name: "", Hno: "", street:"", city: "", state: "", Phone:"", Pin: ""}]
       };
       const [state, dispatch] = useReducer(dataReducer, initialState);
       
@@ -58,11 +60,12 @@ export const DataProvider = ({children})=>{
             cartLength: state.cartLength,
             wishlist: state.wishlist,
             wishlistLength: state.wishlistLength,
-            
             search: state.search,
             address: state.address,
             filterCategory: state.filterCategory,
             activeFilterCategory:state.activeFilterCategory,
+            users:state.users,
+            isLoggedIn: state.isLogged,
         }}
         >
             {children}

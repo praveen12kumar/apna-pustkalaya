@@ -7,8 +7,6 @@ export const Wishlist = () => {
 
     const {wishlist} = useContext(DataContext);
 
-    
-
     console.log("wishList Main",wishlist);
   
     return (

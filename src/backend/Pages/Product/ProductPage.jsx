@@ -1,18 +1,21 @@
 import React from "react";
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { DataContext } from "../../Contexts/data/dataContext";
-import { AiFillStar, AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillStar, AiOutlineShoppingCart, AiOutlineHeart, } from "react-icons/ai";
+import {FaShoppingCart} from "react-icons/fa"
 import { BsTagFill, BsLightningFill } from "react-icons/bs";
 
+
+
 export const ProductPage = () => {
+  const navigate = useNavigate();
+  let result = {};
+  let result1 = {};
+
   const { productId } = useParams();
-  const { products } = useContext(DataContext);
+  const { products, dataDispatch,cart, wishlist } = useContext(DataContext);
 
-
-  const handleWishlist = ()=>{
-    console.log("Wishlist");
-  }
   
   const product = products.find((prod) => prod._id === productId);
 
@@ -21,6 +24,61 @@ export const ProductPage = () => {
     Pages, Language, rating, categoryName, cashOnDelivery,
     fastDelivery,
   } = product;
+  
+  
+  const isInCart = cart.find((item)=> item._id === product._id);
+  console.log("cart", isInCart)
+  const handleAddCart = async (prod) => {
+    try {
+       const prod1 = {
+        product: prod
+       }
+       const encodedToken = localStorage.getItem("encodedToken");
+        const response = await fetch(`/api/user/cart`, {
+          method: 'POST',
+          headers: {
+            "authorization": encodedToken
+          },
+          body: JSON.stringify(prod1)
+        });
+        // saving the encodedToken in the localStorage
+        result = await response.json();
+        
+        dataDispatch({
+          type: "handleCart",
+          payload: result.cart,
+        })
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const isInWishlist = wishlist.find((item)=> item._id === product._id);
+    
+    
+    const handleWishlist = async (prod) => {
+      try {
+         const encodedToken = localStorage.getItem("encodedToken");
+          const response = await fetch ( isInWishlist ? `/api/user/wishlist/${prod._id}` : `/api/user/wishlist`, {
+            method: isInWishlist ? 'DELETE' : 'POST', 
+            headers: {
+              "authorization": encodedToken
+            },           
+            body: isInWishlist ? ("") : (JSON.stringify({product: prod}))
+          });
+          // saving the encodedToken in the localStorage
+          result1 = await response.json();
+         
+          dataDispatch({
+            type: "handleWishlist",
+            payload: result1.wishlist,
+          })
+          console.log("wishlist", wishlist, "productid", product._id );
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+
   return (
     <div className="product-page-container" key={_id} >
       <div className="product-page-main">
@@ -96,8 +154,27 @@ export const ProductPage = () => {
           </div>
         </div>
         <div className="buttons">
-            <button className="btn"><AiOutlineShoppingCart/> <span>Add to Cart</span> </button> 
-            <button className="btn" ><AiOutlineHeart/> <span>Add to Wishlist</span> </button>   
+            {
+          isInCart ? <button className='btn' style={{}} onClick={()=> navigate('/cart')}>
+                    <FaShoppingCart/><span> Go to Cart </span>
+                </button>
+              :
+              <button className='btn' style={{}} onClick={()=>handleAddCart(product)}>
+              <FaShoppingCart/><span> Add to Cart</span>
+             </button> 
+        } 
+            {
+        isInWishlist ? <button className='btn' style={{}} onClick={()=> handleWishlist(product)}>
+                    <AiOutlineHeart/><span> Remove From Wishlist </span>
+                </button>
+              :
+              <button className='btn' style={{}} onClick={()=>handleWishlist(product)}>
+              <AiOutlineHeart/><span> Add to Wishlist</span>
+             </button> 
+        }
+
+
+            {/* <button className="btn" ><AiOutlineHeart/> <span>Add to Wishlist</span> </button>    */}
         </div>
       </div>
     </div>
