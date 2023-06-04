@@ -5,7 +5,9 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { DataContext, DataProvider} from "./backend/Contexts/data/dataContext";
+import {AuthContext, AuthProvider} from "./backend/Contexts/AuthContext/AuthContext";
 
+export {AuthContext};
 
 
 
@@ -16,9 +18,11 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <DataProvider>
-      <App />
-      </DataProvider>
+      <AuthProvider>
+        <DataProvider>
+          <App />
+        </DataProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

@@ -59,12 +59,16 @@ export const dataReducer = (state, {type, payload})=>{
             return{
                 ...state, cart:[...payload], cartLength: payload.length
             }
-      
-
     
         case "handleWishlist":
             return{... state, wishlist:[...payload], wishlistLength: payload.length  } 
 
+        case "add-address":
+            return {...state, address:[...state.address, payload]}
+        
+        case "editAddress":{
+                return {...state, address:[ ...payload]}
+        }
         default:
             return state;
     }

@@ -1,5 +1,6 @@
 import React from 'react';
-import {Routes, Route} from "react-router-dom";
+import { useContext } from 'react';
+import {Routes, Route, Navigate} from "react-router-dom";
 import Mockman from "mockman-js"
 import {Header} from "../src/backend/Components/Header";
 import {Home} from "../src/backend/Pages/Home/Home"
@@ -21,10 +22,24 @@ import "./backend/Pages/Product/product.scss";
 import "./backend/Pages/Product/Components/productFilter.scss";
 import "./backend/Pages/Product/Components/productCard.scss";
 import "./backend/Pages/Product/productPage.scss";
+import { AuthContext } from './backend/Contexts/AuthContext/AuthContext';
 
 
 
 function App() {
+  const {isLogIn, } = useContext(AuthContext);
+  
+
+  const RequiresAuth = ({children, isLogIn})=>{
+    
+     return isLogIn ? children :( <Navigate to="/login"/>)
+     
+  }
+
+  
+
+
+
   return (
     <div className="App">
       
@@ -35,11 +50,12 @@ function App() {
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/products" element={<Product />} />
         <Route path="/products/:productId" element={<ProductPage />} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/wishlist" element={<Wishlist/>} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/cart" element={  <RequiresAuth isLogIn={isLogIn}>  <Cart/> </RequiresAuth>  } />
+        {/* <Route path="/cart" element={<Cart/>}/> */}
+        <Route path="/login" element={   <Login />} />
+        <Route path="/register" element={    <Register />} />
+        <Route path="/wishlist"  element={   <RequiresAuth isLogIn={isLogIn}>   <Wishlist/> </RequiresAuth> } />
+        <Route path="/profile" element={  <RequiresAuth isLogIn={isLogIn}>  <Profile /> </RequiresAuth>  } />
        
       </Routes>
 

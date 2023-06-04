@@ -1,10 +1,14 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./register.scss";
+import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 export const Register = () => {
 
   const navigate = useNavigate();
+  const {isLogIn, setIsLogIn, item} = useContext(AuthContext);
+
+  console.log("Register", item);
 
 
   const [firstName, setFirstName] = useState("");
@@ -12,9 +16,46 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    try {
+      const creds = {
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+      }
+      const response = await fetch(`/api/auth/signup`, {
+        method: 'POST',
+        body: JSON.stringify(creds)
+      });
+      // saving the encodedToken in the localStorage
+      const result = await response.json();
+      console.log("result",result);
+      
+      setEmail("");
+      setPassword("");
+      setFirstName("");
+      setLastName("");
+      if(result.encodedToken != undefined ){
+      localStorage.setItem("encodedToken", result.encodedToken);
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+      localStorage.setItem("name", result.createdUser.firstName);
+      setIsLogIn(true);
+      }
+      else{
+        alert(result.errors);
+      }
+    } catch (error) {
+      // console.log(error);
+      
+    }
+
+
+
+
+
   };
   return (
     <div className="Container">

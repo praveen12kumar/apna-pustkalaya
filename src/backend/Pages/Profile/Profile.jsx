@@ -5,11 +5,15 @@ import {MdDelete} from "react-icons/md";
 
 import "./profile.scss";
 import { DataContext } from '../../Contexts/data/dataContext';
+import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 const Profile = () => {
-    const {users} = useContext(DataContext);
+    const {dataDispatch, address} = useContext(DataContext);
+    const {isLogIn, setIsLogIn} = useContext(AuthContext);
+
+    console.log(address);
     
-    const[isEdit, setIsEdit] = useState(false);
+    const[isEdit, setIsEdit] = useState({isEdit: true, index:0});
     const [Add_name, setAddName] = useState("");
     const [Hno, setHno] = useState("");
     const [street, setStreet] = useState("");
@@ -19,87 +23,110 @@ const Profile = () => {
     const [Pin, setPin] = useState("");
 
 
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-        address:[{
-            Add_name: "",
-            Hno: "",
-            street:"",
-            city: "",
-            state: "",
-            Phone:"",
-            Pin: ""
-        }]})
+   
     const [profile, setProfile] = useState("profile");
-    
+    const [editAddress, setEditAddress] = useState(false);
 
-    useEffect(()=>{
-        setUser({
-            name: "John",
-            email: "john@gmail.com",
-            address:[{
-                Add_name: "John",
-                Hno: "123 Main",
-                street:"Main",
-                city: "Delhi",
-                state: "Delhi",
-                Phone:"813022540",
-                Pin: "204262"
-            },
-            {
-                Add_name: "John",
-                Hno: "123 Main",
-                street:"Main",
-                city: "Delhi",
-                state: "Delhi",
-                Phone:"813022540",
-                Pin: "204262"
-            }, 
-        ]
-        })
-
-    },[])
-
-
-    const handleSubmitBtn = (Add_name, Hno, street, city, state, Pin, Phone, isEdit)=>{
-        if(isEdit)
-        {
-
+    const addEditAddress = (obj) =>{
+        
+        setEditAddress(true);
+        console.log("obj",obj);
+        if(isEdit){
+                setIsEdit({index: obj.index});
+                setIsEdit(obj);
+                console.log("isEdit",isEdit);
+                setAddName(address[obj.index].Add_name); 
+                setHno(address[obj.index].Hno);
+                setStreet(address[obj.index].street); 
+                setCity(address[obj.index].city); setState(address[obj.index].state); setPhone(address[obj.index].Phone);
+                setPin(address[obj.index].Pin);
+               
         }
         else{
+                setAddName(""); 
+                setHno("");
+                setStreet(""); 
+                setCity(""); setState(""); setPhone(""); setPin("");
+        }
+     
+    }
+  
+
+
+    const handleSubmitBtn = ()=>{
+        if(isEdit.isEdit)
+        {
+            const newAddress = [...address];
+            newAddress.splice(isEdit.index, 1, {Add_name: Add_name, Hno: Hno, street: street, city: city, state: state, Pin: Pin, Phone: Phone})
+            setEditAddress(false);
+            dataDispatch({
+                type:"editAddress",
+                payload: newAddress,
+            })
+        }
+        else{
+            const addr = {Add_name: Add_name, Hno: Hno, street: street, city: city, state: state, Pin: Pin, Phone: Phone};
+            console.log("yha tk pahuch gye", isEdit.isEdit, addr);
+            setEditAddress(false);
+            
+            dataDispatch({
+                type:"add-address",
+                payload : addr,
+            })
             
         }
     }
 
+    const handleLogout = ()=>{
+        localStorage.removeItem("encodedToken");
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+        localStorage.removeItem("name")
+        setIsLogIn(false);
+        dataDispatch({
+          type:"logout",
+          
+        })
+      }
+
 
   return (
     <div className='container'>
-        <div>
-        <label  htmlFor=""> Address </label>
-          <input
-            type="text" value={Add_name} id="Add_name" placeholder="Enter Name" onChange={(e) => setAddName(e.target.value)}
-         />
-         <input
-            type="text" value={Hno}  id="Hn" placeholder="House No" onChange={(e) => setHno(e.target.value)}
-         />
-         <input
-            type="text" value={street} id="street" placeholder="Street" onChange={(e) => setStreet(e.target.value)}
-         />
-         <input
-            type="text" value={city}  id="city" placeholder="City" onChange={(e) => setCity(e.target.value)}
-         />
-         <input
-            type="text" value={state}  id="state" placeholder="State" onChange={(e) => setState(e.target.value)}
-         />
-         <input
-            type="text" value={Pin}  id="Pin" placeholder="Pin" onChange={(e) => setPin(e.target.value)}
-         />
-         <input
-            type="text" value={Phone} id="Phone" placeholder="Phone No" onChange={(e) => setPhone(e.target.value)}
-         />
-         <button type='submit' onClick={()=>handleSubmitBtn(Add_name, Hno, street, city, state, Pin, Phone, isEdit)} >Submit</button>
-        </div>
+        {
+            editAddress && <div className='address-container'>
+            <h1> Address </h1>
+            <label htmlFor="Add_name">Enter Name:</label>
+              <input
+                type="text" value={Add_name} id="Add_name" placeholder="Enter Name" onChange={(e) => setAddName(e.target.value)}
+             />
+              <label htmlFor="Hno">HouseNo:</label>
+             <input
+                type="text" value={Hno}  id="Hn" placeholder="House No" onChange={(e) => setHno(e.target.value)}
+             />
+              <label htmlFor="street">Street:</label>
+             <input
+                type="text" value={street} id="street" placeholder="Street" onChange={(e) => setStreet(e.target.value)}
+             />
+              <label htmlFor="city">City:</label>
+             <input
+                type="text" value={city}  id="city" placeholder="City" onChange={(e) => setCity(e.target.value)}
+             />
+              <label htmlFor="state">State:</label>
+             <input
+                type="text" value={state}  id="state" placeholder="State" onChange={(e) => setState(e.target.value)}
+             />
+              <label htmlFor="Pin">Pin:</label>
+             <input
+                type="text" value={Pin}  id="Pin" placeholder="Pin" onChange={(e) => setPin(e.target.value)}
+             />
+              <label htmlFor="Phone">Mobile:</label>
+             <input
+                type="text" value={Phone} id="Phone" placeholder="Phone No" onChange={(e) => setPhone(e.target.value)}
+             />
+             <button className='submitBtn' type='submit' onClick={()=>handleSubmitBtn()} >Submit</button>
+            <button className='cancelBtn' onClick={()=>setEditAddress(false)}>Cancel</button>
+            </div>
+        }
 
 
 
@@ -111,7 +138,7 @@ const Profile = () => {
             <div className="address" onClick={()=> setProfile("address")}>
                 <span>Adress</span>
             </div>
-            <div className="logout">
+            <div className="logout" onClick={handleLogout}>
                 <span>Logout</span>
             </div>
         </div>
@@ -121,20 +148,23 @@ const Profile = () => {
             </div>
         </div>
         <div className="details-section">
-            {(()=>
+           
             {
-                if(profile === "profile")  { return( <div className="profile-container">
+                profile === "profile" ? <div className="profile-container">
                     <div className="profile-section">
-                        <p>Name: <span>{user.name}</span></p>
-                        <p>Email: <span>{user.email}</span></p>
+                        <p>Name: <span>{localStorage.getItem( "name")}</span></p>
+                        <p>Email: <span>{localStorage.getItem("email")}</span></p>
                     </div>
-                </div> 
-                )}
-                elseif( profile === "address")   {return(
+                    </div> 
+                
+                : 
                     <div className="address-section">
-                {console.log(user.address)}
+                    <div className='add-address' >
+                        <button onClick={()=> addEditAddress({isEdit:false, index:0}) } > + Add Address</button>
+                    </div>
+                
                {
-                 user.address.map(({Add_name, Hno, street, city, state, Phone, Pin})=> {
+                 address.map(({Add_name, Hno, street, city, state, Phone, Pin}, index)=> {
                     return(
                         
                         <div className='address'>
@@ -145,7 +175,7 @@ const Profile = () => {
                             <p>{Pin}, Ph:{Phone}</p>
                             </div>
                             <div className='btn-section'>
-                                <div >
+                                <div onClick={()=> addEditAddress({isEdit:true, index:index})} >
                                     <FaEdit/>
                                 </div>
                                 <div>
@@ -157,10 +187,7 @@ const Profile = () => {
                 })
                }
             </div>
-            )}
-                
             }
-        )()}
             
         </div>
 

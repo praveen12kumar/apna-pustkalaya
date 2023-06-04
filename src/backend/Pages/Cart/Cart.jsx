@@ -9,6 +9,9 @@ import { DataContext } from '../../Contexts/data/dataContext';
 export const Cart = () => {
 const {cart, dataDispatch} = useContext(DataContext);
   
+
+
+
   const getData = async() =>{
     const token = localStorage.getItem("encodedToken");
     console.log(cart);
@@ -35,6 +38,8 @@ const {cart, dataDispatch} = useContext(DataContext);
     getData();
   },[]);
 
+  
+
 
   return (
     cart.length >= 1 ? (
@@ -49,8 +54,41 @@ const {cart, dataDispatch} = useContext(DataContext);
             }
             </div>
             <div className="price-section">
-            <h1>Price section</h1>
-            </div>    
+              <h2>Price Details</h2>
+            {
+              cart.map(({_id, title, newPrice, qty})=>{
+                return(
+                  <div className="price" key={_id}>
+                    <p className='title1'>  {title}{" "}({qty}) </p>
+                    <p className='amount'>{`₹ ${newPrice * qty}`}</p>
+                  </div>
+                )
+              })
+            }
+            <div className="discount">
+              <p className='dis'>Discount </p>
+              <p className='number'>-
+                {
+                  cart.reduce((total, acc)=> total + acc.price - acc.newPrice, 0 )
+                }
+              </p>
+            </div>
+            <div className="total-price">
+              <p className='dis'>Total Price</p>
+              <p className='number'> ₹{' '}
+              {
+                cart.reduce((total, acc)=> total + acc.newPrice * acc.qty, 0)
+              }
+              </p>
+            </div>
+
+            <div className="checkout">
+              <button className='checkBtn'>Checkout</button>  
+            </div> 
+
+            </div>
+
+               
         </div>    
     </div>
     ) : (

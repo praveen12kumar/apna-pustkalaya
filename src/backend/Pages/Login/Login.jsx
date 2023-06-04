@@ -4,32 +4,42 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../Contexts/data/dataContext";
 import "./login.scss";
+import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 
 export const Login = () => {
 
-  const {dataDispatch, cartLength, wishlistLength,  cart, wishlist, isLoggedIn} = useContext(DataContext);
-  
+  const {dataDispatch,  cart, wishlist} = useContext(DataContext);
+  const {isLogIn, setIsLogIn, item} = useContext(AuthContext);
+  console.log("Item", item);
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("adarshbalika@gmail.com");
+  const [password, setPassword] = useState("adarshbalika");
+  
   
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     try {
         const creds = {
           email: email,
           password: password,
         } 
+        console.log(creds);
         const response = await fetch(`/api/auth/login`, {
           method: 'POST',
           body: JSON.stringify(creds)
         });
         // saving the encodedToken in the localStorage
         const result = await response.json();
+        if(result.encodedToken != undefined){
+          setIsLogIn(true);
+        }
+        console.log(result);
         localStorage.setItem("encodedToken", result.encodedToken);
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
+        localStorage.setItem("name", result.foundUser.firstName);
       } catch (error) {
         console.log(error);
       }
@@ -51,17 +61,10 @@ export const Login = () => {
     }
   };
 
+ 
 
-  const handleLogout = ()=>{
-    localStorage.removeItem("encodedToken");
-    localStorage.removeItem("email", email);
-    localStorage.removeItem("password", password);
-   
-    dataDispatch({
-      type:"logout",
-      
-    })
-  }
+
+  
 
   return (
     <div className="Container">
@@ -92,13 +95,13 @@ export const Login = () => {
           />
           <div className="btns">
             <button className="btn btn1" type="submit">Log In</button>
-            <button className="btn btn2" type="submit">Log In as Guest</button>
+            {/* <button className="btn btn2" type="submit" onClick={(e)=>loginAsGuest(e)} >Log In as Guest</button> */}
           </div>
         </form>
         <button onClick={()=> navigate('../register')}>Don't have account? Register here</button>
       </div>
 
-      <button onClick={handleLogout} >Logout</button>
+     
     </div>
   );
 };

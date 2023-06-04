@@ -15,12 +15,11 @@ export const DataProvider = ({children})=>{
         cartLength:0,
         wishlist: [],
         wishlistLength:0,
-        address: [],
         search: "",
         filterCategory:["Fiction", "Non-Fiction", "self-help"],
         activeFilterCategory: [],
         isLoggedIn:false,
-        address:[{Add_name: "", Hno: "", street:"", city: "", state: "", Phone:"", Pin: ""}]
+        address:[{Add_name:"Praveen", Hno:"11/B", street:"AzadNagar", city:"Etawah", state:"Uttar pradesh", Pin:"206242", Phone:"8130221540"}]
       };
       const [state, dispatch] = useReducer(dataReducer, initialState);
       
