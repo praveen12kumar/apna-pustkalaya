@@ -56,11 +56,11 @@ const {cart, dataDispatch} = useContext(DataContext);
             <div className="price-section">
               <h2>Price Details</h2>
             {
-              cart.map(({_id, title, newPrice, qty})=>{
+              cart.map(({_id, title, price, qty})=>{
                 return(
                   <div className="price" key={_id}>
                     <p className='title1'>  {title}{" "}({qty}) </p>
-                    <p className='amount'>{`₹ ${newPrice * qty}`}</p>
+                    <p className='amount'>{`₹ ${price * qty}`}</p>
                   </div>
                 )
               })

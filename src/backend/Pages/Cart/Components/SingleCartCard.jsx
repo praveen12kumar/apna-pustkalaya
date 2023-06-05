@@ -7,10 +7,14 @@ import { DataContext } from '../../../Contexts/data/dataContext';
 
 export const SingleCartCard = ({card, index}) => {
 
-    const {dataDispatch, cart} = useContext(DataContext);
+    const {dataDispatch, wishlist} = useContext(DataContext);
     const navigate = useNavigate();
 
     const {_id, title, author, image, price, newPrice, discount, qty} = card;
+
+    const isInWishlist = wishlist.some((item)=> item._id === card._id);
+    console.log("isInWishlist",isInWishlist);
+
 
     const handleQty = async(e, card) => {
         
@@ -136,7 +140,10 @@ export const SingleCartCard = ({card, index}) => {
             </div>
             <div className="card-btn">
                 <button className='remove-btn' onClick={()=> handleRemove(card)}  >Remove</button>
-                <button className='move-btn' onClick={()=>handleMoveToWishlist(card)} >Move to wishlist</button>
+                {
+                  isInWishlist ? <button className='move-btn' onClick={()=>navigate('/wishlist')} >Go to wishlist</button>
+                               : <button className='move-btn' onClick={()=>handleMoveToWishlist(card)} >Move to wishlist</button>
+                }
             </div>
         </div>
      </div>

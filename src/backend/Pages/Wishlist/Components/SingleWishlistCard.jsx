@@ -1,9 +1,16 @@
 import React from 'react'
 import { useContext } from 'react';
 import { DataContext } from '../../../Contexts/data/dataContext';
+import { useNavigate } from 'react-router-dom';
+
 const SingleWishlistCard = ({card, index}) => {
 
   const {cart, wishlist, dataDispatch} = useContext(DataContext)
+  const navigate = useNavigate();
+
+  const isInCart = cart.some((item)=> item._id === card._id);
+  
+
 
     const handleRemove = async (card)=>{
       try {
@@ -93,7 +100,10 @@ const SingleWishlistCard = ({card, index}) => {
             <h4 className='card-author'>Author: {author}</h4>
             <div className="card-btn">
                 <button className='remove-btn' onClick={()=> handleRemove(card)}  >Remove</button>
-                <button className='move-btn' onClick={()=>handleMoveToCart(card)} >Move to Cart</button>
+                {
+                  isInCart ? <button className='move-btn' onClick={()=> navigate('/cart')} >Go to Cart</button>
+                           : <button className='move-btn' onClick={()=>handleMoveToCart(card)} >Move to Cart</button>
+                }
             </div>
         </div>
      </div>
