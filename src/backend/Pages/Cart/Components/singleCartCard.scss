@@ -80,10 +80,13 @@
                 border: none;
                 cursor: pointer;
                 color: $color;
-                background-color: rgb(71, 101, 132);
+                background-color:#295C89;
                 padding: 0.2rem 0.5rem;
                 outline: none;
                 border-radius: 3px;
+                &:hover{
+                    background-color: #306ca0;
+                }
                 }
 
             }
@@ -96,12 +99,16 @@
                 >.remove-btn{
                     width: 40%;
                     height: 35px;
-                    background-color: rgb(71, 101, 132);
+                    background-color: #295C89;
                     color: $color;
                     font-size: 16px;
                     letter-spacing: 2px;
                     border-radius: 5px;
                     border: none;
+                    &:hover{
+                        background-color: #306ca0;
+                    }
+
                 }
                 >.move-btn{
                     height: 35px;
@@ -112,6 +119,9 @@
                     letter-spacing: 2px;
                     border-radius: 5px;
                     border: none;
+                    &:hover{
+                        background-color: rgb(187, 67, 67);
+                    }
                 }
             }
         }

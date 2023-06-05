@@ -3,6 +3,8 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../../Contexts/data/dataContext'
 import {EmptyWishlist} from "./Components/EmptyWishlist"
 import SingleWishlistCard from "./Components/SingleWishlistCard"
+import "./wishlist.scss";
+
 export const Wishlist = () => {
 
     const {wishlist} = useContext(DataContext);
@@ -12,8 +14,10 @@ export const Wishlist = () => {
     return (
     wishlist.length >= 1 ? (
         <div className='wishlist-container'>
-          <div className="wishlist-title" ><p>Wishlist <span>{wishlist.length}</span></p></div>
-          <div className="wishlist-main-container">
+          <div className="wishlist-title" >
+            <p>Wishlist <span>{wishlist.length}</span></p>
+          </div>
+        
               <div className="wishlist-cards">
               {
                 wishlist.map((card, index)=>(
@@ -22,7 +26,7 @@ export const Wishlist = () => {
               }
               </div>   
           </div>    
-      </div>
+      
       ) : (
         <EmptyWishlist/>
       )

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillHeart, AiFillStar } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { DataContext } from "../../../Contexts/data/dataContext";
+import { ToastHandler } from "../../../utils/utils";
 
 export const ProductCard = ({ prod }) => {
   let result = {};
@@ -12,7 +13,7 @@ export const ProductCard = ({ prod }) => {
   let { dataDispatch, cart, products, wishlist } = useContext(DataContext);
   const navigate = useNavigate();
 
-  const isInCart = cart.find((item) => item._id === prod._id);
+  const isInCart = cart.some((item) => item._id === prod._id);
   const { _id, title, author, image, price, newPrice, discount, rating, Language } = prod;
 
   const handleAddCart = async (prod) => {
@@ -76,8 +77,8 @@ export const ProductCard = ({ prod }) => {
       {/* </Link> */}
       <div className="heart">
       {
-          isInWishlist ? <button onClick={() => handleWishlist(prod)}> <AiFillHeart /> </button>
-          : <button onClick={() => handleWishlist(prod)}> <AiFillHeart /> </button>
+          isInWishlist ? <button className="remove-heart" onClick={() => handleWishlist(prod)}> <AiFillHeart /> </button>
+          : <button className="add-heart" onClick={() => handleWishlist(prod)}> <AiFillHeart /> </button>
       }
       </div>
       <div className="card-details">

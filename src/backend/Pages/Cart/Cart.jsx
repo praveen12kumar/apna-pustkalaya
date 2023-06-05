@@ -7,6 +7,7 @@ import { DataContext } from '../../Contexts/data/dataContext';
 
 
 export const Cart = () => {
+
 const {cart, dataDispatch} = useContext(DataContext);
   
 
@@ -38,8 +39,7 @@ const {cart, dataDispatch} = useContext(DataContext);
     getData();
   },[]);
 
-  
-
+   
 
   return (
     cart.length >= 1 ? (
@@ -67,10 +67,9 @@ const {cart, dataDispatch} = useContext(DataContext);
             }
             <div className="discount">
               <p className='dis'>Discount </p>
+                
               <p className='number'>-
-                {
-                  cart.reduce((total, acc)=> total + acc.price - acc.newPrice, 0 )
-                }
+                {cart.reduce((total, acc)=> total + (acc.price - acc.newPrice)*(acc.qty) , 0)}
               </p>
             </div>
             <div className="total-price">

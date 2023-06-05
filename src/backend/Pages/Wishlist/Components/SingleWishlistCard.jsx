@@ -2,6 +2,8 @@ import React from 'react'
 import { useContext } from 'react';
 import { DataContext } from '../../../Contexts/data/dataContext';
 import { useNavigate } from 'react-router-dom';
+import "./singleWishlistCard.scss";
+
 
 const SingleWishlistCard = ({card, index}) => {
 
@@ -90,19 +92,19 @@ const SingleWishlistCard = ({card, index}) => {
 
     const {_id, title, author, image} = card;
   return (
-    <div className='card' key={index}>
-     <div className="card-container">
-        <div className="card-image">
+    <div className='wish-card' key={_id}>
+     <div className="wish-card-container">
+        <div className="wish-card-image">
             <img src={image} alt={title} />
         </div>
-        <div className="card-details">
-            <h3 className='card-title'>{title}</h3>
-            <h4 className='card-author'>Author: {author}</h4>
-            <div className="card-btn">
-                <button className='remove-btn' onClick={()=> handleRemove(card)}  >Remove</button>
+        <div className="wish-card-details">
+            <h3 className='wish-card-title'>{title}</h3>
+            <h4 className='wish-card-author'>Author: <span>{author}</span> </h4>
+            <div className="wish-card-btn">
+                <button className='wish-remove-btn' onClick={()=> handleRemove(card)}  >Remove</button>
                 {
-                  isInCart ? <button className='move-btn' onClick={()=> navigate('/cart')} >Go to Cart</button>
-                           : <button className='move-btn' onClick={()=>handleMoveToCart(card)} >Move to Cart</button>
+                  isInCart ? <button className='wish-move-btn' onClick={()=> navigate('/cart')} >Go to Cart</button>
+                           : <button className='wish-move-btn' onClick={()=>handleMoveToCart(card)} >Move to Cart</button>
                 }
             </div>
         </div>

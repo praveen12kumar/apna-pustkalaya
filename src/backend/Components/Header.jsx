@@ -6,9 +6,15 @@ import {CgProfile} from "react-icons/cg";
 import { DataContext } from "../Contexts/data/dataContext";
 
 export const Header = () => {
-  let {cartLength, wishlistLength } = useContext(DataContext);
+  let {cartLength, wishlistLength, products } = useContext(DataContext);
   // console.log("cartLength", cartLength);
   const navigate = useNavigate();
+
+  const handleSearch = (value)=>{
+    console.log( products.filter((prod)=> prod.title.toLowerCase().includes(value.toLowerCase())) );
+  }
+
+
   return (
     <div className="header">
       <div className="header-container">
@@ -24,6 +30,7 @@ export const Header = () => {
             className="input"
             type="text"
             placeholder="Search for products, brands and more"
+            onChange={(e)=>handleSearch(e.target.value)}
           />
           <div className="search">
             <AiOutlineSearch />

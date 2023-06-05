@@ -11,6 +11,11 @@ import {Login} from "./backend/Pages/Login/Login";
 import { Register } from './backend/Pages/Login/Register';
 import { Wishlist } from './backend/Pages/Wishlist/Wishlist';
 import Profile from './backend/Pages/Profile/Profile';
+import { AuthContext } from './backend/Contexts/AuthContext/AuthContext';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 // CSS
 import "./backend/styles/app.scss";
@@ -18,11 +23,9 @@ import "./backend/styles/utils.scss";
 import "./backend/styles/header.scss";
 import "./backend/Pages/Home/home.scss";
 import "./backend/Pages/Product/product.scss";
-import "./backend/Pages/Product/product.scss";
 import "./backend/Pages/Product/Components/productFilter.scss";
 import "./backend/Pages/Product/Components/productCard.scss";
 import "./backend/Pages/Product/productPage.scss";
-import { AuthContext } from './backend/Contexts/AuthContext/AuthContext';
 
 
 
@@ -56,9 +59,8 @@ function App() {
         <Route path="/register" element={    <Register />} />
         <Route path="/wishlist"  element={   <RequiresAuth isLogIn={isLogIn}>   <Wishlist/> </RequiresAuth> } />
         <Route path="/profile" element={  <RequiresAuth isLogIn={isLogIn}>  <Profile /> </RequiresAuth>  } />
-       
       </Routes>
-
+      <ToastContainer position="bottom-right" autoClose={2000} />
     </div>
   );
 }

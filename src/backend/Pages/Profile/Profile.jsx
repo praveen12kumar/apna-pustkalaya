@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState, useContext } from 'react';
 import {FaEdit} from "react-icons/fa";
 import {MdDelete} from "react-icons/md";
+import { NavLink } from 'react-router-dom';
 
 import "./profile.scss";
 import { DataContext } from '../../Contexts/data/dataContext';
@@ -42,7 +43,7 @@ const Profile = () => {
                 setPin(address[obj.index].Pin);
                
         }
-        else{
+        else{  
                 setAddName(""); 
                 setHno("");
                 setStreet(""); 
@@ -70,7 +71,7 @@ const Profile = () => {
             setEditAddress(false);
             
             dataDispatch({
-                type:"add-address",
+                type:"update-address",
                 payload : addr,
             })
             
@@ -89,13 +90,28 @@ const Profile = () => {
         })
       }
 
+      
+      const getActiveId = ({ isActive }) => ({
+        color: isActive ? "white" : "white",
+        backgroundColor: isActive ? "#306ca0" : "#af239a",
+      });
+
+      const DeleteAddress = (index)=>{
+        const newAddress = address.filter((add, ind)=> index !== ind)
+        dataDispatch({
+            type:"add-address",
+            payload: newAddress,
+        })
+      }
+
 
   return (
     <div className='container'>
         {
             editAddress && <div className='address-container'>
             <h1> Address </h1>
-            <label htmlFor="Add_name">Enter Name:</label>
+            <div className="address">
+                <label htmlFor="Add_name">Enter Name:</label>
               <input
                 type="text" value={Add_name} id="Add_name" placeholder="Enter Name" onChange={(e) => setAddName(e.target.value)}
              />
@@ -123,8 +139,9 @@ const Profile = () => {
              <input
                 type="text" value={Phone} id="Phone" placeholder="Phone No" onChange={(e) => setPhone(e.target.value)}
              />
-             <button className='submitBtn' type='submit' onClick={()=>handleSubmitBtn()} >Submit</button>
-            <button className='cancelBtn' onClick={()=>setEditAddress(false)}>Cancel</button>
+            </div>
+             <button  type='submit' onClick={()=>handleSubmitBtn()} >Submit</button>
+            <button onClick={()=>setEditAddress(false)}>Cancel</button>
             </div>
         }
 
@@ -132,15 +149,15 @@ const Profile = () => {
 
       <div className="profile-main">
         <div className="button-section">
-            <div className="profile" onClick={()=> setProfile("profile")} >
+            <NavLink className="profile"  style={getActiveId} onClick={()=> setProfile("profile")} >
                 <span>Profile</span>
-            </div>
-            <div className="address" onClick={()=> setProfile("address")}>
+            </NavLink>
+            <NavLink className="address" style={getActiveId} onClick={()=> setProfile("address")}>
                 <span>Adress</span>
-            </div>
-            <div className="logout" onClick={handleLogout}>
+            </NavLink>
+            <NavLink className="logout" style={getActiveId} onClick={handleLogout}>
                 <span>Logout</span>
-            </div>
+            </NavLink>
         </div>
         <div className="image-section">
             <div className="image-container" >
@@ -169,16 +186,16 @@ const Profile = () => {
                         
                         <div className='address'>
                             <div className='home'>
-                            <p>{Add_name}</p>
-                            <p>{Hno}, {street}</p>
-                            <p><span>{city}</span>, <span>{state}</span></p>
-                            <p>{Pin}, Ph:{Phone}</p>
+                            <p>{Add_name},</p>
+                            <p>{Hno},{" "}{street}</p>
+                            <p>{city},{" "}{state}</p>
+                            <p>{Pin},{" "}{Phone}</p>
                             </div>
                             <div className='btn-section'>
-                                <div onClick={()=> addEditAddress({isEdit:true, index:index})} >
+                                <div style={{color:"lightgreen"}} onClick={()=> addEditAddress({isEdit:true, index:index})} >
                                     <FaEdit/>
                                 </div>
-                                <div>
+                                <div onClick={()=> DeleteAddress(index)} style={{color:"red"}}>
                                     <MdDelete/>
                                 </div>
                             </div>

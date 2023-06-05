@@ -69,6 +69,10 @@ export const dataReducer = (state, {type, payload})=>{
         case "editAddress":{
                 return {...state, address:[ ...payload]}
         }
+        case "update-address":
+            return{
+                ...state, address:[...state.address, payload]
+            }
         default:
             return state;
     }
