@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../Contexts/data/dataContext";
@@ -8,14 +8,14 @@ import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 
 export const Login = () => {
 
-  const {dataDispatch,  cart, wishlist} = useContext(DataContext);
-  const {isLogIn, setIsLogIn, item} = useContext(AuthContext);
-  console.log("Item", item);
+  const {dataDispatch} = useContext(DataContext);
+  const {isLogIn, setIsLogIn} = useContext(AuthContext);
+  
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("adarshbalika@gmail.com");
   const [password, setPassword] = useState("adarshbalika");
-  
+  console.log("checkLogin1", isLogIn);
   
   const handleSubmit = async (e) => {
 
@@ -32,10 +32,10 @@ export const Login = () => {
         });
         // saving the encodedToken in the localStorage
         const result = await response.json();
-        if(result.encodedToken != undefined){
+        if(result.encodedToken !== undefined){
           setIsLogIn(true);
         }
-        console.log(result);
+        console.log("checkLogin2", isLogIn);
         localStorage.setItem("encodedToken", result.encodedToken);
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
@@ -43,6 +43,8 @@ export const Login = () => {
       } catch (error) {
         console.log(error);
       }
+
+
       try{
         const response = await fetch("/api/user/cart",{
           method: "GET",
@@ -63,14 +65,14 @@ export const Login = () => {
 
  
 
-
+  console.log("checkLogin3", isLogIn);
   
 
   return (
     <div className="Container">
       <div className="loginSection">
         <h1>Log In</h1>
-        <form action="" onSubmit={(e) => handleSubmit(e)}>
+        <form action="" >
           <label  htmlFor="email">
             Email
           </label>
@@ -94,7 +96,7 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="btns">
-            <button className="btn btn1" type="submit">Log In</button>
+            <button className="btn btn1" onClick={(e) => handleSubmit(e)} type="button">Log In</button>
             {/* <button className="btn btn2" type="submit" onClick={(e)=>loginAsGuest(e)} >Log In as Guest</button> */}
           </div>
         </form>

@@ -4,10 +4,10 @@ import { SingleCartCard } from './Components/SingleCartCard'
 import { EmptyCart } from './Components/EmptyCart';
 import "./cart.scss";
 import { DataContext } from '../../Contexts/data/dataContext';
-
+import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 export const Cart = () => {
-
+const {isLogIn} = useContext(AuthContext);
 const {cart, dataDispatch} = useContext(DataContext);
   
 
@@ -39,7 +39,7 @@ const {cart, dataDispatch} = useContext(DataContext);
     getData();
   },[]);
 
-   
+  console.log("Islog IN CART", isLogIn);   
 
   return (
     cart.length >= 1 ? (

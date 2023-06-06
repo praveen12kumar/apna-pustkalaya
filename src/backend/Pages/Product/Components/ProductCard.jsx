@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillHeart, AiFillStar } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
@@ -10,7 +10,7 @@ export const ProductCard = ({ prod }) => {
   let result = {};
   let result1 = {};
   
-  let { dataDispatch, cart, products, wishlist } = useContext(DataContext);
+  let { dataDispatch, cart, wishlist } = useContext(DataContext);
   const navigate = useNavigate();
 
   const isInCart = cart.some((item) => item._id === prod._id);

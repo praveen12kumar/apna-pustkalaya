@@ -9,8 +9,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { DataContext} from "../../Contexts/data/dataContext";
-
+import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 export const Home = () => {
+  const {isLogIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const {dataDispatch} = useContext(DataContext);
   let { category} = useContext(DataContext);
@@ -33,7 +34,7 @@ export const Home = () => {
     navigate('/products');
   }
 
-  
+  console.log("Islogin Home", isLogIn);
 
   return (
     <>

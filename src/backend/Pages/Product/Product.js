@@ -3,9 +3,9 @@ import { useContext } from "react";
 import { ProductFilter } from "./Components/ProductFilter";
 import { ProductCard } from "./Components/ProductCard";
 import { DataContext } from "../../Contexts/data/dataContext";
-
+import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 export const Product = () => {
-   
+  const {isLogIn} = useContext(AuthContext);
   let {
     sortBy,
     priceRange,
@@ -39,7 +39,7 @@ export const Product = () => {
         });
 
   //const [filteredData, setFilteredData] = useState(RatingFilter);
-
+        console.log("IsLogin Products", isLogIn);
   return (
     <div className="product-container">
       <ProductFilter />

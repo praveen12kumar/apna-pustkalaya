@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState, useContext } from 'react';
 import {FaEdit} from "react-icons/fa";
 import {MdDelete} from "react-icons/md";
@@ -10,7 +10,7 @@ import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 const Profile = () => {
     const {dataDispatch, address} = useContext(DataContext);
-    const {isLogIn, setIsLogIn} = useContext(AuthContext);
+    const {setIsLogIn} = useContext(AuthContext);
 
     console.log(address);
     
@@ -52,8 +52,6 @@ const Profile = () => {
      
     }
   
-
-
     const handleSubmitBtn = ()=>{
         if(isEdit.isEdit)
         {
@@ -67,7 +65,7 @@ const Profile = () => {
         }
         else{
             const addr = {Add_name: Add_name, Hno: Hno, street: street, city: city, state: state, Pin: Pin, Phone: Phone};
-            console.log("yha tk pahuch gye", isEdit.isEdit, addr);
+            // console.log("yha tk pahuch gye", isEdit.isEdit, addr);
             setEditAddress(false);
             
             dataDispatch({
@@ -103,7 +101,6 @@ const Profile = () => {
             payload: newAddress,
         })
       }
-
 
   return (
     <div className='container'>
