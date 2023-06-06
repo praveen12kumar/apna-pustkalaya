@@ -12,8 +12,6 @@ const Profile = () => {
     const {dataDispatch, address} = useContext(DataContext);
     const {setIsLogIn} = useContext(AuthContext);
 
-    console.log(address);
-    
     const[isEdit, setIsEdit] = useState({isEdit: true, index:0});
     const [Add_name, setAddName] = useState("");
     const [Hno, setHno] = useState("");
@@ -24,7 +22,6 @@ const Profile = () => {
     const [Pin, setPin] = useState("");
 
 
-   
     const [profile, setProfile] = useState("profile");
     const [editAddress, setEditAddress] = useState(false);
 

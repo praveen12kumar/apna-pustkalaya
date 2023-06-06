@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { DataContext } from "../../Contexts/data/dataContext";
 import "./login.scss";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
@@ -12,10 +12,9 @@ export const Login = () => {
   const {isLogIn, setIsLogIn} = useContext(AuthContext);
   
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [email, setEmail] = useState("adarshbalika@gmail.com");
   const [password, setPassword] = useState("adarshbalika");
-  console.log("checkLogin1", isLogIn);
   
   const handleSubmit = async (e) => {
 
@@ -32,7 +31,7 @@ export const Login = () => {
         });
         // saving the encodedToken in the localStorage
         const result = await response.json();
-        if(result.encodedToken !== undefined){
+        if(result.encodedToken != undefined){
           setIsLogIn(true);
         }
         console.log("checkLogin2", isLogIn);
@@ -61,11 +60,14 @@ export const Login = () => {
       catch(err){
         console.log(err);
     }
+    
+    //console.log("location",location);
+    navigate(location?.state?.from?.pathname );
   };
 
  
 
-  console.log("checkLogin3", isLogIn);
+ 
   
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import {Routes, Route, Navigate} from "react-router-dom";
+import {Routes, Route, Navigate, useLocation} from "react-router-dom";
 import Mockman from "mockman-js"
 import {Header} from "../src/backend/Components/Header";
 import {Home} from "../src/backend/Pages/Home/Home"
@@ -34,8 +34,8 @@ function App() {
   
 
   const RequiresAuth = ({children, isLogIn})=>{
-    
-     return isLogIn ? children :( <Navigate to="/login"/>)
+     const location = useLocation();
+     return isLogIn ? children :( <Navigate to="/login"  state={{from:location}}          />)
      
   }
 

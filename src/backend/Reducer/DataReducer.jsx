@@ -13,8 +13,9 @@ export const dataReducer = (state, {type, payload})=>{
             return{
                 ...state, products:[...state.products, ...payload]
             };
-        // case "Add_to_cart":
-        //     return {...state, cartLength:cartLength+1, cart:[...state.cart, payload]};
+        case "search":
+            return{...state, search:payload
+            };
         
         case "fetch_cart":
             return {...state, cart:[...payload], cartLength: payload.length }

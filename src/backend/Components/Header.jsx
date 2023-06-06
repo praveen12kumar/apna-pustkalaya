@@ -6,15 +6,20 @@ import {CgProfile} from "react-icons/cg";
 import { DataContext } from "../Contexts/data/dataContext";
 
 export const Header = () => {
-  let {cartLength, wishlistLength, products } = useContext(DataContext);
+  let {dataDispatch,cartLength, wishlistLength, products, search} = useContext(DataContext);
   // console.log("cartLength", cartLength);
   const navigate = useNavigate();
 
   const handleSearch = (value)=>{
-    console.log( products.filter((prod)=> prod.title.toLowerCase().includes(value.toLowerCase())) );
+    dataDispatch({
+      type: "search",
+      payload: value,
+    })
+
+    navigate('/products');
   }
 
-
+  //( products.filter((prod)=> prod.title.toLowerCase().includes(value.toLowerCase())) );
   return (
     <div className="header">
       <div className="header-container">

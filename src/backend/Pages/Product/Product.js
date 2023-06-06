@@ -12,11 +12,11 @@ export const Product = () => {
     rating,
     products,
     activeFilterCategory,
+    search,
   } = useContext(DataContext);
 
-  
-
-  let priceFilter = products.filter((item) => item.newPrice <= priceRange);
+  let searchFilter =  products.filter((prod)=> prod.title.toLowerCase().includes(search.toLowerCase())) 
+  let priceFilter = (searchFilter ? searchFilter: products).filter((item) => item.newPrice <= priceRange)
   let CategoryFilter =
     activeFilterCategory.length === 0
       ? priceFilter
