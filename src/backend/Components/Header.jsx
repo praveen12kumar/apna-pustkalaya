@@ -6,7 +6,7 @@ import {CgProfile} from "react-icons/cg";
 import { DataContext } from "../Contexts/data/dataContext";
 
 export const Header = () => {
-  let {dataDispatch,cartLength, wishlistLength, products, search} = useContext(DataContext);
+  let {dataDispatch,cartLength, wishlistLength} = useContext(DataContext);
   // console.log("cartLength", cartLength);
   const navigate = useNavigate();
 

@@ -40,7 +40,7 @@ export const ProductCard = ({ prod }) => {
     }
   };
 
-  const isInWishlist = wishlist.find((item) => item._id === prod._id);
+  const isInWishlist = wishlist.some((item) => item._id === prod._id);
 
   const handleWishlist = async (prod) => {
     try {

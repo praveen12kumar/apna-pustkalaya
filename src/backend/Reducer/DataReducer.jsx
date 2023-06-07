@@ -1,7 +1,7 @@
 export const dataReducer = (state, {type, payload})=>{
     
      //console.log("cate",state.category);
-    const{cartLength, wishlistLength, isLoggedIn} = state
+    const{cartLength, wishlistLength} = state
      
     switch(type){
         case "Add_Category":
@@ -19,6 +19,9 @@ export const dataReducer = (state, {type, payload})=>{
         
         case "fetch_cart":
             return {...state, cart:[...payload], cartLength: payload.length }
+        
+        case "fetch_wishlist":
+            return {...state, wishlist:[...payload], wishlistLength: payload.length }
 
         case "logout":
             return {...state, cart:[], cartLength:0, wishlistLength:0, wishlist:[], isLoggedIn:false }
