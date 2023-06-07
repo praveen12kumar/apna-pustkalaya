@@ -156,7 +156,6 @@ const Profile = () => {
             </div>
         </div>
         <div className="details-section">
-           
             {
                 profile === "profile" ? <div className="profile-container">
                     <div className="profile-section">

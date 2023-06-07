@@ -58,7 +58,7 @@ function App() {
         <Route path="/register" element={    <Register />} />
         <Route path="/wishlist"  element={   <RequiresAuth isLogIn={isLogIn}>   <Wishlist/> </RequiresAuth> } />
         <Route path="/profile" element={  <RequiresAuth isLogIn={isLogIn}>  <Profile /> </RequiresAuth>  } />
-        {/* <Route path="/checkout" element={  <RequiresAuth isLogIn={isLogIn}>  <Checkout /> </RequiresAuth>  } /> */}
+        <Route path="/checkout" element={  <RequiresAuth isLogIn={isLogIn}>  <Checkout /> </RequiresAuth>  } />
       </Routes>
       <ToastContainer position="bottom-right" autoClose={2000} />
     </div>

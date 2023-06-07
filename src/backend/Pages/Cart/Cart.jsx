@@ -41,23 +41,23 @@ const {cart, dataDispatch} = useContext(DataContext);
     getData();
   },[]);
 
-//   const checkoutHandler = () =>{
-//     const totalQty = cart.reduce((acc, curr) => {
-//       return acc + curr.qty;
-//     }, 0);
-//     const totalPrice = cart.reduce((acc, curr) => {
-//       return acc + Number(curr.price) * curr.qty;
-//     }, 0);
-//     const totalDiscount = cart.reduce((total, acc) => {
-//       return  total + (acc.price - acc.newPrice)*(acc.qty)} , 0)
+  const checkoutHandler = () =>{
+    const totalQty = cart.reduce((acc, curr) => {
+      return acc + curr.qty;
+    }, 0);
+    const totalPrice = cart.reduce((acc, curr) => {
+      return acc + Number(curr.price) * curr.qty;
+    }, 0);
+    const totalDiscount = cart.reduce((total, acc) => {
+      return  total + (acc.price - acc.newPrice)*(acc.qty)} , 0)
 
-//     dataDispatch({
-//       type: "SetCartPriceDetails",
-//       payload: { cartPriceDetails: { price: totalPrice, qty: totalQty, discount:totalDiscount}},
-//     });
-//     navigate('/checkout');
+    dataDispatch({
+      type: "SetCartPriceDetails",
+      payload: { cartPriceDetails: { price: totalPrice, qty: totalQty, discount:totalDiscount}},
+    });
+    navigate('/checkout');
   
-// }
+}
   
 
   return (
@@ -100,7 +100,7 @@ const {cart, dataDispatch} = useContext(DataContext);
               </p>
             </div>
             <div className="checkout">
-              <button className='checkBtn' >Checkout</button>  
+              <button className='checkBtn' onClick={checkoutHandler} >Checkout</button>  
             </div> 
             </div>        
         </div>    

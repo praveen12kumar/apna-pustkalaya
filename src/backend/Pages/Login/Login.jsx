@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { DataContext } from "../../Contexts/data/dataContext";
 import "./login.scss";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
-
+import {BiHide,BiShow} from "react-icons/bi"
 export const Login = () => {
   const { dataDispatch } = useContext(DataContext);
   const { isLogIn, setIsLogIn } = useContext(AuthContext);
@@ -14,6 +14,7 @@ export const Login = () => {
   const location = useLocation();
   const [email, setEmail] = useState("adarshbalika@gmail.com");
   const [password, setPassword] = useState("adarshbalika");
+  const [showPassword,setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,13 +98,16 @@ export const Login = () => {
           />
           <label htmlFor="password">Password</label>
           <input
-            type="password"
+          type={showPassword?"text":"password"}
             value={password}
             name="password"
             id="password"
             placeholder="***********"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div className="show-password" onClick={()=>setShowPassword(!showPassword)}>
+            {showPassword? <BiHide size="20px"/> : <BiShow size="20px"/>}
+          </div>
           <div className="btns">
             <button
               className="btn btn1"
