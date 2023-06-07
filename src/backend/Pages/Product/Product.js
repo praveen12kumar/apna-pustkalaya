@@ -52,7 +52,7 @@ export const Product = () => {
               <span>({finalData.length} products)</span>
             </>
           ) : (
-            <h1>Sorry , Products are not available for chosen category.</h1>
+            <h1>Sorry, Products are not available for chosen category.</h1>
           )}
         </div>
 

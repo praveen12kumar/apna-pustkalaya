@@ -77,7 +77,8 @@ export const Login = () => {
       }
     }
     console.log("location", location);
-    navigate(location?.state?.from?.pathname);
+     (location?.state === null )? ( navigate('/products')) :(navigate(location?.state?.from?.pathname))
+      
   };
 
   return (

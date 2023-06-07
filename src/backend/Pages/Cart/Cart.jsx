@@ -1,13 +1,15 @@
 import React from 'react'
-import { useContext, useState, useEffect } from 'react'
+import { useContext,useEffect } from 'react'
 import { SingleCartCard } from './Components/SingleCartCard'
 import { EmptyCart } from './Components/EmptyCart';
+import { useNavigate } from 'react-router-dom';
 import "./cart.scss";
 import { DataContext } from '../../Contexts/data/dataContext';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 export const Cart = () => {
-const {isLogIn} = useContext(AuthContext);
+const navigate = useNavigate();
+//const {isLogIn} = useContext(AuthContext);
 const {cart, dataDispatch} = useContext(DataContext);
   
 
@@ -39,7 +41,24 @@ const {cart, dataDispatch} = useContext(DataContext);
     getData();
   },[]);
 
-  console.log("Islog IN CART", isLogIn);   
+//   const checkoutHandler = () =>{
+//     const totalQty = cart.reduce((acc, curr) => {
+//       return acc + curr.qty;
+//     }, 0);
+//     const totalPrice = cart.reduce((acc, curr) => {
+//       return acc + Number(curr.price) * curr.qty;
+//     }, 0);
+//     const totalDiscount = cart.reduce((total, acc) => {
+//       return  total + (acc.price - acc.newPrice)*(acc.qty)} , 0)
+
+//     dataDispatch({
+//       type: "SetCartPriceDetails",
+//       payload: { cartPriceDetails: { price: totalPrice, qty: totalQty, discount:totalDiscount}},
+//     });
+//     navigate('/checkout');
+  
+// }
+  
 
   return (
     cart.length >= 1 ? (
@@ -80,14 +99,10 @@ const {cart, dataDispatch} = useContext(DataContext);
               }
               </p>
             </div>
-
             <div className="checkout">
-              <button className='checkBtn'>Checkout</button>  
+              <button className='checkBtn' >Checkout</button>  
             </div> 
-
-            </div>
-
-               
+            </div>        
         </div>    
     </div>
     ) : (

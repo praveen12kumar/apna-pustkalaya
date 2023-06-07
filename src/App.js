@@ -12,6 +12,7 @@ import { Register } from './backend/Pages/Login/Register';
 import { Wishlist } from './backend/Pages/Wishlist/Wishlist';
 import Profile from './backend/Pages/Profile/Profile';
 import { AuthContext } from './backend/Contexts/AuthContext/AuthContext';
+import Checkout from './backend/Pages/Cart/Components/Checkout';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -30,17 +31,15 @@ import "./backend/Pages/Product/productPage.scss";
 
 
 function App() {
+   const location = useLocation();
   const {isLogIn, } = useContext(AuthContext);
   
 
   const RequiresAuth = ({children, isLogIn})=>{
      const location = useLocation();
-     return isLogIn ? children :( <Navigate to="/login"  state={{from:location}}          />)
+     return isLogIn ? children :( <Navigate to="/login"  state={{from:location}} />)
      
   }
-
-  
-
 
 
   return (
@@ -59,6 +58,7 @@ function App() {
         <Route path="/register" element={    <Register />} />
         <Route path="/wishlist"  element={   <RequiresAuth isLogIn={isLogIn}>   <Wishlist/> </RequiresAuth> } />
         <Route path="/profile" element={  <RequiresAuth isLogIn={isLogIn}>  <Profile /> </RequiresAuth>  } />
+        {/* <Route path="/checkout" element={  <RequiresAuth isLogIn={isLogIn}>  <Checkout /> </RequiresAuth>  } /> */}
       </Routes>
       <ToastContainer position="bottom-right" autoClose={2000} />
     </div>

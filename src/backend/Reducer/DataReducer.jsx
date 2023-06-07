@@ -77,6 +77,12 @@ export const dataReducer = (state, {type, payload})=>{
             return{
                 ...state, address:[...state.address, payload]
             }
+        case "SetCartPriceDetails": 
+                return {
+                  ...state,
+                  cartPriceDetails: { ...payload.cartPriceDetails },
+                };
+              
         default:
             return state;
     }

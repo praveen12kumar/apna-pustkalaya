@@ -6,11 +6,12 @@ import {
   AiFillGithub,
   AiFillLinkedin,
 } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { DataContext} from "../../Contexts/data/dataContext";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 export const Home = () => {
+  const location = useLocation();
   const {isLogIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const {dataDispatch} = useContext(DataContext);

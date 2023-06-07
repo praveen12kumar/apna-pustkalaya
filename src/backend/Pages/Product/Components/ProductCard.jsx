@@ -5,19 +5,21 @@ import { AiFillHeart, AiFillStar } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { DataContext } from "../../../Contexts/data/dataContext";
 import { ToastHandler } from "../../../utils/utils";
+import { AuthContext } from "../../../Contexts/AuthContext/AuthContext";
 
 export const ProductCard = ({ prod }) => {
   let result = {};
   let result1 = {};
   
   let { dataDispatch, cart, wishlist } = useContext(DataContext);
+  const {isLogIn} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const isInCart = cart.some((item) => item._id === prod._id);
   const { _id, title, author, image, price, newPrice, discount, rating, Language } = prod;
 
   const handleAddCart = async (prod) => {
-    try {
+   if(isLogIn){ try {
       const prod1 = {
         product: prod,
       };
@@ -37,13 +39,16 @@ export const ProductCard = ({ prod }) => {
       });
     } catch (error) {
       console.log(error);
+    }}
+    else{
+      navigate('../login')
     }
   };
 
   const isInWishlist = wishlist.some((item) => item._id === prod._id);
 
   const handleWishlist = async (prod) => {
-    try {
+    if(isLogIn){try {
       const encodedToken = localStorage.getItem("encodedToken");
       const response = await fetch(
         isInWishlist ? `/api/user/wishlist/${prod._id}` : `/api/user/wishlist`,
@@ -65,6 +70,9 @@ export const ProductCard = ({ prod }) => {
       console.log("wishlist", wishlist, "productid", prod._id);
     } catch (error) {
       console.log(error);
+    }}
+    else{
+      navigate('../login')
     }
   };
 

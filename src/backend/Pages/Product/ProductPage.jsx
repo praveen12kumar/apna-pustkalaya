@@ -1,15 +1,18 @@
 import React from "react";
 import { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { DataContext } from "../../Contexts/data/dataContext";
-import { AiFillStar, AiOutlineShoppingCart, AiOutlineHeart, } from "react-icons/ai";
+import { DataContext} from "../../Contexts/data/dataContext";
+import { AiFillStar, AiOutlineHeart, } from "react-icons/ai";
 import {FaShoppingCart} from "react-icons/fa"
 import { BsTagFill, BsLightningFill } from "react-icons/bs";
+import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
 
 
 
 export const ProductPage = () => {
+  const {isLogIn} = useContext(AuthContext)
   const navigate = useNavigate();
+
   let result = {};
   let result1 = {};
 
@@ -29,7 +32,8 @@ export const ProductPage = () => {
   const isInCart = cart.find((item)=> item._id === product._id);
   console.log("cart", isInCart)
   const handleAddCart = async (prod) => {
-    try {
+    if(isLogIn){
+      try {
        const prod1 = {
         product: prod
        }
@@ -50,13 +54,16 @@ export const ProductPage = () => {
         })
       } catch (error) {
         console.log(error);
+      }}
+      else{
+        navigate('/login')
       }
     }
     const isInWishlist = wishlist.find((item)=> item._id === product._id);
     
     
     const handleWishlist = async (prod) => {
-      try {
+      if(isLogIn){try {
          const encodedToken = localStorage.getItem("encodedToken");
           const response = await fetch ( isInWishlist ? `/api/user/wishlist/${prod._id}` : `/api/user/wishlist`, {
             method: isInWishlist ? 'DELETE' : 'POST', 
@@ -75,6 +82,9 @@ export const ProductPage = () => {
           console.log("wishlist", wishlist, "productid", product._id );
         } catch (error) {
           console.log(error);
+        }}
+        else{
+          navigate('/login')
         }
       }
 

@@ -12,6 +12,8 @@ const Profile = () => {
     const {dataDispatch, address} = useContext(DataContext);
     const {setIsLogIn} = useContext(AuthContext);
 
+    
+
     const[isEdit, setIsEdit] = useState({isEdit: true, index:0});
     const [Add_name, setAddName] = useState("");
     const [Hno, setHno] = useState("");
@@ -38,7 +40,6 @@ const Profile = () => {
                 setStreet(address[obj.index].street); 
                 setCity(address[obj.index].city); setState(address[obj.index].state); setPhone(address[obj.index].Phone);
                 setPin(address[obj.index].Pin);
-               
         }
         else{  
                 setAddName(""); 
@@ -46,7 +47,6 @@ const Profile = () => {
                 setStreet(""); 
                 setCity(""); setState(""); setPhone(""); setPin("");
         }
-     
     }
   
     const handleSubmitBtn = ()=>{
@@ -86,10 +86,7 @@ const Profile = () => {
       }
 
       
-      const getActiveId = ({ isActive }) => ({
-        color: isActive ? "white" : "white",
-        backgroundColor: isActive ? "#306ca0" : "#af239a",
-      });
+     
 
       const DeleteAddress = (index)=>{
         const newAddress = address.filter((add, ind)=> index !== ind)
@@ -143,15 +140,15 @@ const Profile = () => {
 
       <div className="profile-main">
         <div className="button-section">
-            <NavLink className="profile"  style={getActiveId} onClick={()=> setProfile("profile")} >
+            <div className="profile"  onClick={()=> setProfile("profile")} >
                 <span>Profile</span>
-            </NavLink>
-            <NavLink className="address" style={getActiveId} onClick={()=> setProfile("address")}>
-                <span>Adress</span>
-            </NavLink>
-            <NavLink className="logout" style={getActiveId} onClick={handleLogout}>
+            </div>
+            <div className="address" onClick={()=> setProfile("address")}>
+                <span>Address</span>
+            </div>
+            <div className="logout"  onClick={handleLogout}>
                 <span>Logout</span>
-            </NavLink>
+            </div>
         </div>
         <div className="image-section">
             <div className="image-container" >
@@ -169,10 +166,12 @@ const Profile = () => {
                     </div> 
                 
                 : 
-                    <div className="address-section">
+                <div className="address-section">
                     <div className='add-address' >
                         <button onClick={()=> addEditAddress({isEdit:false, index:0}) } > + Add Address</button>
                     </div>
+
+                    {console.log("Address", address)}
                 
                {
                  address.map(({Add_name, Hno, street, city, state, Phone, Pin}, index)=> {

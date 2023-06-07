@@ -43,7 +43,7 @@ export const Header = () => {
         </div>
 
         <div className="header-options">
-          <button className="btn" onClick={()=> navigate('/login') }>Login </button>
+          {/* <button className="btn" onClick={()=> navigate('/login') }>Login </button> */}
           <div className="wishlist" onClick={()=>navigate('/wishlist')}>
             <AiOutlineHeart/>
             <span className="wishlistItem">{wishlistLength}</span>
